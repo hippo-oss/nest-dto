@@ -1,0 +1,202 @@
+version: 2.1
+
+orbs:
+  hippo:
+    executors:
+      default:
+        docker:
+          - image: circleci/node:fermium
+    commands:
+      build-source:
+        steps:
+          - run:
+              name: Build source
+              command: yarn build
+      install-dependencies:
+        steps:
+          - run:
+              name: Install dependencies
+              command: yarn install
+      install-yarn:
+        steps:
+          - run:
+              name: Install yarn
+              command: |
+                sudo npm install -g -f yarn@latest
+      restore-workspace:
+        steps:
+          - attach_workspace:
+              at: << parameters.root >>
+        parameters:
+          root:
+            type: string
+            description: The root directory
+            default: /home/circleci
+      restore-yarn-cache:
+        steps:
+          - restore_cache:
+              key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+      run-coverage:
+        steps:
+          - run:
+              name: Run coverage
+              command: |
+                yarn ci:test:coverage --coverageDirectory << parameters.artifacts >>/coverage
+              environment:
+                ARTIFACTS_DIR: << parameters.artifacts >>
+                JEST_JUNIT_OUTPUT_DIR: << parameters.artifacts >>
+                JEST_JUNIT_OUTPUT_NAME: junit-test.xml
+        parameters:
+          artifacts:
+            type: string
+            description: The artifacts directory
+            default: /tmp/artifacts
+      run-lint:
+        steps:
+          - run:
+              name: Run lint
+              command: |
+                yarn lint --format junit -o << parameters.artifacts >>/lint.xml
+              environment:
+                ARTIFACTS_DIR: << parameters.artifacts >>
+        parameters:
+          artifacts:
+            type: string
+            description: The artifacts directory
+            default: /tmp/artifacts
+      run-test:
+        steps:
+          - run:
+              name: Run test
+              command: |
+                yarn ci:test
+              environment:
+                ARTIFACTS_DIR: << parameters.artifacts >>
+                JEST_JUNIT_OUTPUT_DIR: << parameters.artifacts >>
+                JEST_JUNIT_OUTPUT_NAME: junit-test.xml
+        parameters:
+          artifacts:
+            type: string
+            description: The artifacts directory
+            default: /tmp/artifacts
+      save-artifacts:
+        steps:
+          - store_artifacts:
+              path: << parameters.artifacts >>
+        parameters:
+          artifacts:
+            type: string
+            description: The artifacts directory
+            default: /tmp/artifacts
+      save-test-results:
+        steps:
+          - store_test_results:
+              path: << parameters.artifacts >>
+        parameters:
+          artifacts:
+            type: string
+            description: The artifacts directory
+            default: /tmp/artifacts
+      save-workspace:
+        steps:
+          - persist_to_workspace:
+              root: << parameters.root >>
+              paths:
+                - << parameters.path >>
+        parameters:
+          root:
+            type: string
+            description: The root directory
+            default: /home/circleci
+          path:
+            type: string
+            description: The path of the project directory
+            default: project
+      save-yarn-cache:
+        steps:
+          - save_cache:
+              key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+              paths:
+                - << parameters.modules >>
+        parameters:
+          modules:
+            type: string
+            description: The modules directory
+            default: ./node_modules
+    jobs:
+      build:
+        executor: << parameters.executor >>
+        steps:
+          - checkout
+          - install-yarn
+          - restore-yarn-cache
+          - install-dependencies
+          - build-source
+          - save-yarn-cache
+          - save-workspace
+        parameters:
+          executor:
+            type: executor
+            default: default
+      coverage:
+        executor: << parameters.executor >>
+        steps:
+          - restore-workspace
+          - restore-yarn-cache
+          - run-coverage
+          - save-artifacts
+          - save-test-results
+        parameters:
+          executor:
+            type: executor
+            default: default
+      lint:
+        executor: << parameters.executor >>
+        steps:
+          - restore-workspace
+          - restore-yarn-cache
+          - run-lint
+          - save-artifacts
+          - save-test-results
+        parameters:
+          executor:
+            type: executor
+            default: default
+      test:
+        executor: << parameters.executor >>
+        steps:
+          - restore-workspace
+          - restore-yarn-cache
+          - run-test
+          - save-artifacts
+          - save-test-results
+        parameters:
+          executor:
+            type: executor
+            default: default
+
+workflows:
+    build-and-release:
+      jobs:
+        - hippo/build:
+            filters:
+              tags:
+                only: /.*/
+        - hippo/coverage:
+            requires:
+              - hippo/build
+            filters:
+              tags:
+                only: /.*/
+        - hippo/lint:
+            requires:
+              - hippo/build
+            filters:
+              tags:
+                only: /.*/
+        - hippo/test:
+            requires:
+              - hippo/build
+            filters:
+              tags:
+                only: /.*/
