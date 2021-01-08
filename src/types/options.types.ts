@@ -3,7 +3,7 @@
  * To make this work, we need both a way for each mixin to express the options
  * it needs and a way to ensure that options are accessible in a base class.
  */
-import { Constructor } from './types.constructor';
+import { Constructor } from './constructor.types';
 
 /* An interface that expresses that a type has a particular kind of options.
  */

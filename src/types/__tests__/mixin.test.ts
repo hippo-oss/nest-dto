@@ -1,4 +1,4 @@
-import { WithOptions } from '../types.options';
+import { WithOptions } from '..';
 import { BarOptions, Bar } from './bar';
 import { FooOptions, Foo } from './foo';
 
