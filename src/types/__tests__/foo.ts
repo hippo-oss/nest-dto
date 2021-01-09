@@ -1,5 +1,4 @@
-import { Constructor } from '../types.constructor';
-import { HasOptions } from '../types.options';
+import { Constructor, HasOptions } from '..';
 
 export interface FooOptions {
     foo: string;
