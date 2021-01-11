@@ -1,12 +1,12 @@
 import { getMetadataStorage } from 'class-validator';
 
 import { createBuilder } from '../../builders';
-import { ClassValidatorOptions, withClassValidator } from '../class-validator.mixin';
+import { ValidatorOptions, withValidator } from '../validator.mixin';
 
-const Builder = withClassValidator(createBuilder<ClassValidatorOptions>());
+const Builder = withValidator(createBuilder<ValidatorOptions>());
 
 describe('mixins', () => {
-    describe('ClassValidatorMixin', () => {
+    describe('ValidatorMixin', () => {
         const metadataStorage = getMetadataStorage();
 
         it('defaults to required', () => {

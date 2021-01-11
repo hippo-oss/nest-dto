@@ -1,12 +1,12 @@
 import { plainToClass } from 'class-transformer';
 
 import { createBuilder } from '../../builders';
-import { ClassTransformerOptions, withClassTransformer } from '../class-transformer.mixin';
+import { TransformerOptions, withTransformer } from '../transformer.mixin';
 
-const Builder = withClassTransformer(createBuilder<ClassTransformerOptions>());
+const Builder = withTransformer(createBuilder<TransformerOptions>());
 
 describe('mixins', () => {
-    describe('ClassTransformerMixin', () => {
+    describe('TransformerMixin', () => {
         const options = {
             excludeExtraneousValues: true,
         };
