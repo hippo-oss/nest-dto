@@ -13,14 +13,3 @@ export type InputDecorator = PropertyDecorator
     | ReturnType<typeof Transform>
     | ReturnType<typeof Type>;
 /* eslint-enable @typescript-eslint/indent */
-
-export interface HasInputDecorators {
-    decorators: InputDecorator[];
-
-    add(decorator: InputDecorator): this;
-}
-
-/* The generated decorator needs to have a reduced set of inputs in order to be
- * compatable with all of the input types.
- */
-export type ComposedPropertyDecorator = (target: unknown, propertyKey: string) => void;
