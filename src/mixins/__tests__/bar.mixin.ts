@@ -1,4 +1,4 @@
-import { Constructor, HasOptions } from '..';
+import { Constructor, HasOptions } from '../../interfaces';
 
 export interface BarOptions {
     bar?: number;
