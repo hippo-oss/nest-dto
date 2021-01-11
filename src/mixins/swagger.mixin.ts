@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-import { Constructor, HasInputDecorators, HasOptions } from '../interfaces';
+import { Constructor, HasOptions, HasPropertyDecorators } from '../interfaces';
 
 export interface SwaggerOptions {
     description?: string;
@@ -9,7 +9,7 @@ export interface SwaggerOptions {
     type?: string,
 }
 
-type BaseBuilder = HasInputDecorators & HasOptions<SwaggerOptions>;
+type BaseBuilder = HasOptions<SwaggerOptions> & HasPropertyDecorators;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B) {

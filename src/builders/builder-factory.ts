@@ -1,10 +1,5 @@
 import { composePropertyDecorators } from '../composed';
-import {
-    ComposedPropertyDecorator,
-    HasInputDecorators,
-    HasOptions,
-    InputDecorator,
-} from '../interfaces';
+import { HasOptions, HasPropertyDecorators } from '../interfaces';
 
 /* A factory function for a builder.
  *
@@ -15,18 +10,18 @@ import {
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createBuilder<Options>() {
-    return class Builder implements HasOptions<Options>, HasInputDecorators {
+    return class Builder implements HasOptions<Options>, HasPropertyDecorators {
         constructor(
             public readonly options: Options,
-            public decorators: InputDecorator[] = [],
+            public decorators: PropertyDecorator[] = [],
         ) { }
 
-        public add(decorator: InputDecorator): this {
+        public add(decorator: PropertyDecorator): this {
             this.decorators.push(decorator);
             return this;
         }
 
-        public build(): ComposedPropertyDecorator {
+        public build(): PropertyDecorator {
             return composePropertyDecorators(this.decorators);
         }
     };
