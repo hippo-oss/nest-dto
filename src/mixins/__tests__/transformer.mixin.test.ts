@@ -1,6 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
-import { createBuilder } from '../../builders';
+import { createBuilder } from '../../builder-factory';
 import { TransformerOptions, withTransformer } from '../transformer.mixin';
 
 const Builder = withTransformer(createBuilder<TransformerOptions>());

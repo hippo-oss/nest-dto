@@ -1,6 +1,6 @@
 import { getMetadataStorage } from 'class-validator';
 
-import { createBuilder } from '../../builders';
+import { createBuilder } from '../../builder-factory';
 import { ValidatorOptions, withValidator } from '../validator.mixin';
 
 const Builder = withValidator(createBuilder<ValidatorOptions>());
