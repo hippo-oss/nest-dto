@@ -4,8 +4,12 @@ import { Constructor, HasOptions, HasPropertyDecorators } from '../interfaces';
 
 export interface SwaggerOptions {
     description?: string;
+    enum: Record<string, unknown>,
+    enumName?: string;
     format?: string;
     nullable?: boolean;
+    minimum?: number,
+    maximum?: number,
     type?: string,
 }
 
@@ -25,8 +29,12 @@ export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B) {
         public api(): this {
             this.add(
                 ApiProperty({
+                    enum: this.options.enum,
+                    enumName: this.options.enumName,
                     description: this.options.description,
                     format: this.options.format,
+                    minimum: this.options.minimum,
+                    maximum: this.options.maximum,
                     nullable: this.options.nullable,
                     type: this.options.type,
                 }),

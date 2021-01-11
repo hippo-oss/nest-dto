@@ -3,5 +3,6 @@
  * Allows mixins to require their own decorators.
  */
 export interface HasPropertyDecorators {
-    add(decorator: PropertyDecorator): this;
+
+    add(...decorators: (PropertyDecorator | undefined)[]): this;
 }
