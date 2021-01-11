@@ -2,15 +2,15 @@ import { IsDefined, IsOptional } from 'class-validator';
 
 import { Constructor, HasInputDecorators, HasOptions } from '../interfaces';
 
-export interface ClassValidatorOptions {
+export interface ValidatorOptions {
     optional?: boolean;
 }
 
-type BaseBuilder = HasInputDecorators & HasOptions<ClassValidatorOptions>;
+type BaseBuilder = HasInputDecorators & HasOptions<ValidatorOptions>;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function withClassValidator<B extends Constructor<BaseBuilder>>(Base: B) {
-    return class ClassValidatorMixin extends Base {
+export function withValidator<B extends Constructor<BaseBuilder>>(Base: B) {
+    return class ValidatorMixin extends Base {
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         constructor(...args: any[]) {
