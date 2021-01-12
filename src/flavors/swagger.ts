@@ -2,10 +2,6 @@
  */
 import { createBuilder } from '../builder-factory';
 import {
-    BooleanOptions,
-    DateOptions,
-    EnumOptions,
-    IntegerOptions,
     IsBooleanFactory,
     IsDateFactory,
     IsEnumFactory,
@@ -14,11 +10,18 @@ import {
     IsNumberFactory,
     IsStringFactory,
     IsUUIDFactory,
+} from '../factories';
+import {
+    BooleanOptions,
+    DateOptions,
+    EnumOptions,
+    Flavor,
+    IntegerOptions,
     NestedOptions,
     NumberOptions,
     StringOptions,
     UUIDOptions,
-} from '../factories';
+} from '../interfaces';
 import {
     SwaggerOptions,
     TransformerOptions,
@@ -28,10 +31,10 @@ import {
     withValidator,
 } from '../mixins';
 
-export interface MixinOptions extends SwaggerOptions, TransformerOptions, ValidatorOptions {}
+export interface FlavorOptions extends SwaggerOptions, TransformerOptions, ValidatorOptions {}
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function createBuilderWithMixins<Options>() {
+function createBuilderWithMixins<Options>() {
     return withSwagger(
         withTransformer(
             withValidator(
@@ -41,11 +44,15 @@ export function createBuilderWithMixins<Options>() {
     );
 }
 
-export const IsBoolean = IsBooleanFactory(createBuilderWithMixins<MixinOptions & BooleanOptions>());
-export const IsDate = IsDateFactory(createBuilderWithMixins<MixinOptions & DateOptions>());
-export const IsEnum = IsEnumFactory(createBuilderWithMixins<MixinOptions & EnumOptions>());
-export const IsInteger = IsIntegerFactory(createBuilderWithMixins<MixinOptions & IntegerOptions>());
-export const IsNested = IsNestedFactory(createBuilderWithMixins<MixinOptions & NestedOptions>());
-export const IsNumber = IsNumberFactory(createBuilderWithMixins<MixinOptions & NumberOptions>());
-export const IsString = IsStringFactory(createBuilderWithMixins<MixinOptions & StringOptions>());
-export const IsUUID = IsUUIDFactory(createBuilderWithMixins<MixinOptions & UUIDOptions>());
+export const flavor: Flavor<FlavorOptions> = {
+    IsBoolean: IsBooleanFactory(createBuilderWithMixins<FlavorOptions & BooleanOptions>()),
+    IsDate: IsDateFactory(createBuilderWithMixins<FlavorOptions & DateOptions>()),
+    IsEnum: IsEnumFactory(createBuilderWithMixins<FlavorOptions & EnumOptions>()),
+    IsInteger: IsIntegerFactory(createBuilderWithMixins<FlavorOptions & IntegerOptions>()),
+    IsNested: IsNestedFactory(createBuilderWithMixins<FlavorOptions & NestedOptions>()),
+    IsNumber: IsNumberFactory(createBuilderWithMixins<FlavorOptions & NumberOptions>()),
+    IsString: IsStringFactory(createBuilderWithMixins<FlavorOptions & StringOptions>()),
+    IsUUID: IsUUIDFactory(createBuilderWithMixins<FlavorOptions & UUIDOptions>()),
+};
+
+export type SwaggerFlavor = typeof flavor;

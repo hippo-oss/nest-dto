@@ -1,24 +1,22 @@
-import { IsString } from 'class-validator';
+import { IsString, Matches } from 'class-validator';
 
-import { BuilderClass } from '../interfaces';
-
-// TODO: add regex
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface StringOptions {}
+import { BuilderClass, StringOptions } from '../interfaces';
 
 export function IsStringFactory<Options extends StringOptions>(
     Builder: BuilderClass<Options>,
-): (options: Options) => PropertyDecorator {
+): (options?: Options) => PropertyDecorator {
     return (
-        options: Options,
+        options?: Options,
     ): PropertyDecorator => new Builder({
-        ...options,
+        ...(options || {}),
 
         // set type to number
         type: 'string',
     }).add(
         // validate data as a string
         IsString(),
+
+        // maybe: add a regex
+        options?.pattern !== undefined ? Matches(options.pattern) : undefined,
     ).build();
 }

@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`flavors.basic does not transform input data if extraneous values are excluded 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isBoolean": "requiredBooleanValue must be a boolean value",
+      "isDefined": "requiredBooleanValue should not be null or undefined",
+    },
+    "property": "requiredBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDate": "requiredDateValue must be a Date instance",
+      "isDefined": "requiredDateValue should not be null or undefined",
+    },
+    "property": "requiredDateValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredEnumValue should not be null or undefined",
+      "isEnum": "requiredEnumValue must be a valid enum value",
+    },
+    "property": "requiredEnumValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredIntegerValue should not be null or undefined",
+      "isInt": "requiredIntegerValue must be an integer number",
+    },
+    "property": "requiredIntegerValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredNestedValue should not be null or undefined",
+    },
+    "property": "requiredNestedValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredNumberValue should not be null or undefined",
+      "isNumber": "requiredNumberValue must be a number conforming to the specified constraints",
+    },
+    "property": "requiredNumberValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredStringValue should not be null or undefined",
+      "isString": "requiredStringValue must be a string",
+    },
+    "property": "requiredStringValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredUUIDValue should not be null or undefined",
+      "isUuid": "requiredUUIDValue must be an UUID",
+    },
+    "property": "requiredUUIDValue",
+    "target": Example {},
+    "value": undefined,
+  },
+]
+`;
+
+exports[`flavors.basic transforms input data 1`] = `Array []`;
+
+exports[`flavors.basic validates required fields 1`] = `Example {}`;
+
+exports[`flavors.basic validates required fields 2`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isBoolean": "requiredBooleanValue must be a boolean value",
+      "isDefined": "requiredBooleanValue should not be null or undefined",
+    },
+    "property": "requiredBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDate": "requiredDateValue must be a Date instance",
+      "isDefined": "requiredDateValue should not be null or undefined",
+    },
+    "property": "requiredDateValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredEnumValue should not be null or undefined",
+      "isEnum": "requiredEnumValue must be a valid enum value",
+    },
+    "property": "requiredEnumValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredIntegerValue should not be null or undefined",
+      "isInt": "requiredIntegerValue must be an integer number",
+    },
+    "property": "requiredIntegerValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredNestedValue should not be null or undefined",
+    },
+    "property": "requiredNestedValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredNumberValue should not be null or undefined",
+      "isNumber": "requiredNumberValue must be a number conforming to the specified constraints",
+    },
+    "property": "requiredNumberValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredStringValue should not be null or undefined",
+      "isString": "requiredStringValue must be a string",
+    },
+    "property": "requiredStringValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredUUIDValue should not be null or undefined",
+      "isUuid": "requiredUUIDValue must be an UUID",
+    },
+    "property": "requiredUUIDValue",
+    "target": Example {},
+    "value": undefined,
+  },
+]
+`;

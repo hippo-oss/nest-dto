@@ -1,11 +1,6 @@
 import { IsEnum } from 'class-validator';
 
-import { BuilderClass } from '../interfaces';
-
-export interface EnumOptions {
-    enum: Record<string, unknown>,
-    enumName?: string;
-}
+import { BuilderClass, EnumOptions } from '../interfaces';
 
 export function IsEnumFactory<Options extends EnumOptions>(
     Builder: BuilderClass<Options>,
