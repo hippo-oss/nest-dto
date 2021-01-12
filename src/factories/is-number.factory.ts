@@ -1,7 +1,7 @@
-import { IsNumber as IsNumberValidator, Max, Min } from 'class-validator';
+import { IsNumber, Max, Min } from 'class-validator';
 
-import { Constructor, PropertyDecoratorBuilder } from '../interfaces';
-import { TypePropertyDecorator } from '../mixins';
+import { TypePropertyDecorator } from '../adapters';
+import { BuilderClass } from '../interfaces';
 
 export interface IntegerOptions {
     maximum?: number,
@@ -9,12 +9,12 @@ export interface IntegerOptions {
     type?: string,
 }
 
-export function IsNumber<Options extends IntegerOptions>(
-    options: Options,
-    Builder: Constructor<PropertyDecoratorBuilder<Options>>,
-): PropertyDecorator {
-
-    return new Builder({
+export function IsNumberFactory<Options extends IntegerOptions>(
+    Builder: BuilderClass<Options>,
+): (options: Options) => PropertyDecorator {
+    return (
+        options: Options,
+    ): PropertyDecorator => new Builder({
         ...options,
 
         // set type to number
@@ -24,7 +24,7 @@ export function IsNumber<Options extends IntegerOptions>(
         TypePropertyDecorator(() => Number),
 
         // validate data as a number
-        IsNumberValidator(),
+        IsNumber(),
 
         // maybe: add a maximum
         options.maximum !== undefined ? Max(options.maximum) : undefined,

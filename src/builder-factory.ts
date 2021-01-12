@@ -1,5 +1,15 @@
-import { composePropertyDecorators } from '../composed';
-import { PropertyDecoratorBuilder } from '../interfaces';
+import { Builder } from './interfaces';
+
+/* Compose a collection of input decorators into a single decorator.
+ */
+export function composePropertyDecorators(decorators: PropertyDecorator[]): PropertyDecorator {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    return (target: Object, propertyKey: string | symbol): void => {
+        for (const decorator of decorators) {
+            decorator(target, propertyKey);
+        }
+    };
+}
 
 /* A factory function for a builder.
  *
@@ -10,7 +20,7 @@ import { PropertyDecoratorBuilder } from '../interfaces';
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createBuilder<Options>() {
-    return class Builder implements PropertyDecoratorBuilder<Options> {
+    return class BaseBuilder implements Builder<Options> {
         constructor(
             public readonly options: Options,
             public decorators: PropertyDecorator[] = [],

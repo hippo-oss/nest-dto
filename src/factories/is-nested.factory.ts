@@ -1,18 +1,18 @@
 import { ValidateNested } from 'class-validator';
 
-import { Constructor, PropertyDecoratorBuilder } from '../interfaces';
-import { TypePropertyDecorator } from '../mixins';
+import { TypePropertyDecorator } from '../adapters';
+import { BuilderClass, Constructor } from '../interfaces';
 
 export interface NestedOptions {
     nested: Constructor,
 }
 
-export function IsNested<Options extends NestedOptions>(
-    options: Options,
-    Builder: Constructor<PropertyDecoratorBuilder<Options>>,
-): PropertyDecorator {
-
-    return new Builder({
+export function IsNestedFactory<Options extends NestedOptions>(
+    Builder: BuilderClass<Options>,
+): (options: Options) => PropertyDecorator {
+    return (
+        options: Options,
+    ): PropertyDecorator => new Builder({
         ...options,
 
         // set type to nested type

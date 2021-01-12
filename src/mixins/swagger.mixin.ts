@@ -4,7 +4,7 @@ import { Constructor, HasOptions, HasPropertyDecorators } from '../interfaces';
 
 export interface SwaggerOptions {
     description?: string;
-    enum: Record<string, unknown>,
+    enum?: Record<string, unknown>,
     enumName?: string;
     format?: string;
     nullable?: boolean;
