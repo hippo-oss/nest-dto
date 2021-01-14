@@ -55,4 +55,4 @@ export const flavor: Flavor<FlavorOptions> = {
     IsUUID: IsUUIDFactory(createBuilderWithMixins<FlavorOptions & UUIDOptions>()),
 };
 
-export type SwaggerFlavor = typeof flavor;
+export type OpenAPIFlavor = typeof flavor;

@@ -1,6 +1,6 @@
 import { Constructor } from '../../interfaces';
 
-import { BasicFlavor, SwaggerFlavor } from '..';
+import { BasicFlavor, OpenAPIFlavor } from '..';
 
 export function createFixtures(
     /* It is rather difficult to write `createFixtures()` as a generic function
@@ -15,7 +15,7 @@ export function createFixtures(
      *
      * It is, however, easy to allow a union of the flavors we wish to support.
      */
-    flavor: BasicFlavor | SwaggerFlavor,
+    flavor: BasicFlavor | OpenAPIFlavor,
 ): Constructor {
     const {
         IsBoolean,
