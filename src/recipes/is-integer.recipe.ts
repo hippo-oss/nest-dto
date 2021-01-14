@@ -3,7 +3,7 @@ import { IsInt, Max, Min } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, IntegerOptions } from '../interfaces';
 
-export function IsIntegerFactory<Options extends IntegerOptions>(
+export function IsIntegerRecipe<Options extends IntegerOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (

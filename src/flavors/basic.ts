@@ -1,16 +1,6 @@
 /* Defines a basic set of decorators.
  */
-import { createBuilder } from '../builder-factory';
-import {
-    IsBooleanFactory,
-    IsDateFactory,
-    IsEnumFactory,
-    IsIntegerFactory,
-    IsNestedFactory,
-    IsNumberFactory,
-    IsStringFactory,
-    IsUUIDFactory,
-} from '../factories';
+import { createBuilder } from '../builder';
 import {
     BooleanOptions,
     DateOptions,
@@ -28,6 +18,16 @@ import {
     withTransformer,
     withValidator,
 } from '../mixins';
+import {
+    IsBooleanRecipe,
+    IsDateRecipe,
+    IsEnumRecipe,
+    IsIntegerRecipe,
+    IsNestedRecipe,
+    IsNumberRecipe,
+    IsStringRecipe,
+    IsUUIDRecipe,
+} from '../recipes';
 
 export interface FlavorOptions extends TransformerOptions, ValidatorOptions {}
 
@@ -41,14 +41,14 @@ function createBuilderWithMixins<Options>() {
 }
 
 export const flavor: Flavor<FlavorOptions> = {
-    IsBoolean: IsBooleanFactory(createBuilderWithMixins<FlavorOptions & BooleanOptions>()),
-    IsDate: IsDateFactory(createBuilderWithMixins<FlavorOptions & DateOptions>()),
-    IsEnum: IsEnumFactory(createBuilderWithMixins<FlavorOptions & EnumOptions>()),
-    IsInteger: IsIntegerFactory(createBuilderWithMixins<FlavorOptions & IntegerOptions>()),
-    IsNested: IsNestedFactory(createBuilderWithMixins<FlavorOptions & NestedOptions>()),
-    IsNumber: IsNumberFactory(createBuilderWithMixins<FlavorOptions & NumberOptions>()),
-    IsString: IsStringFactory(createBuilderWithMixins<FlavorOptions & StringOptions>()),
-    IsUUID: IsUUIDFactory(createBuilderWithMixins<FlavorOptions & UUIDOptions>()),
+    IsBoolean: IsBooleanRecipe(createBuilderWithMixins<FlavorOptions & BooleanOptions>()),
+    IsDate: IsDateRecipe(createBuilderWithMixins<FlavorOptions & DateOptions>()),
+    IsEnum: IsEnumRecipe(createBuilderWithMixins<FlavorOptions & EnumOptions>()),
+    IsInteger: IsIntegerRecipe(createBuilderWithMixins<FlavorOptions & IntegerOptions>()),
+    IsNested: IsNestedRecipe(createBuilderWithMixins<FlavorOptions & NestedOptions>()),
+    IsNumber: IsNumberRecipe(createBuilderWithMixins<FlavorOptions & NumberOptions>()),
+    IsString: IsStringRecipe(createBuilderWithMixins<FlavorOptions & StringOptions>()),
+    IsUUID: IsUUIDRecipe(createBuilderWithMixins<FlavorOptions & UUIDOptions>()),
 };
 
 export type BasicFlavor = typeof flavor;

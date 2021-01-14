@@ -3,7 +3,7 @@ import { ValidateNested } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, NestedOptions } from '../interfaces';
 
-export function IsNestedFactory<Options extends NestedOptions>(
+export function IsNestedRecipe<Options extends NestedOptions>(
     Builder: BuilderClass<Options>,
 ): (options: Options) => PropertyDecorator {
     return (

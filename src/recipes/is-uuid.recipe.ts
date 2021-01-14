@@ -2,7 +2,7 @@ import { IsUUID } from 'class-validator';
 
 import { BuilderClass, UUIDOptions } from '../interfaces';
 
-export function IsUUIDFactory<Options extends UUIDOptions>(
+export function IsUUIDRecipe<Options extends UUIDOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (

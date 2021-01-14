@@ -2,7 +2,7 @@ import { IsEnum } from 'class-validator';
 
 import { BuilderClass, EnumOptions } from '../interfaces';
 
-export function IsEnumFactory<Options extends EnumOptions>(
+export function IsEnumRecipe<Options extends EnumOptions>(
     Builder: BuilderClass<Options>,
 ): (options: Options) => PropertyDecorator {
     return (

@@ -3,7 +3,7 @@ import { IsBoolean } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, BooleanOptions } from '../interfaces';
 
-export function IsBooleanFactory<Options extends BooleanOptions>(
+export function IsBooleanRecipe<Options extends BooleanOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (
