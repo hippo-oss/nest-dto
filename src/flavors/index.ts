@@ -1,3 +1,2 @@
-export * as basic from './basic';
-export * as strict from './strict';
-export * as swagger from './swagger';
+export { flavor as basic, BasicFlavor } from './basic';
+export { flavor as swagger, SwaggerFlavor } from './swagger';

@@ -7,7 +7,6 @@
     "author": "Hippo Engineering",
     "license": "MIT",
     "private": false,
-    "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
@@ -32,6 +31,8 @@
         "rxjs": "^6.6.3"
     },
     "devDependencies": {
+        "@nestjs/platform-express": "^7.6.5",
+        "@nestjs/testing": "^7.6.5",
         "@types/jest": "^26.0.20",
         "@types/node": "^14.14.20",
         "@typescript-eslint/eslint-plugin": "^4.10.0",

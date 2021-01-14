@@ -1,25 +1,20 @@
 import { IsUUID } from 'class-validator';
 
-import { BuilderClass } from '../interfaces';
-
-// TODO: add version
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface UUIDOptions {}
+import { BuilderClass, UUIDOptions } from '../interfaces';
 
 export function IsUUIDFactory<Options extends UUIDOptions>(
     Builder: BuilderClass<Options>,
-): (options: Options) => PropertyDecorator {
+): (options?: Options) => PropertyDecorator {
     return (
-        options: Options,
+        options?: Options,
     ): PropertyDecorator => new Builder({
-        ...options,
+        ...(options || {}),
 
         // OpenAPI expresses UUID as a string format
         type: 'string',
         format: 'uuid',
     }).add(
         // validate data as a string
-        IsUUID(),
+        IsUUID(options?.version),
     ).build();
 }

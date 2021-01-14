@@ -1,11 +1,7 @@
 import { ValidateNested } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass, Constructor } from '../interfaces';
-
-export interface NestedOptions {
-    nested: Constructor,
-}
+import { BuilderClass, NestedOptions } from '../interfaces';
 
 export function IsNestedFactory<Options extends NestedOptions>(
     Builder: BuilderClass<Options>,

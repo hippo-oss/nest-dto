@@ -1,18 +1,15 @@
 import { IsBoolean } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass } from '../interfaces';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BooleanOptions {}
+import { BuilderClass, BooleanOptions } from '../interfaces';
 
 export function IsBooleanFactory<Options extends BooleanOptions>(
     Builder: BuilderClass<Options>,
-): (options: Options) => PropertyDecorator {
+): (options?: Options) => PropertyDecorator {
     return (
-        options: Options,
+        options?: Options,
     ): PropertyDecorator => new Builder({
-        ...options,
+        ...(options || {}),
 
         // set type to number
         type: 'boolean',
