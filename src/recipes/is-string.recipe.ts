@@ -2,7 +2,7 @@ import { IsString, Matches } from 'class-validator';
 
 import { BuilderClass, StringOptions } from '../interfaces';
 
-export function IsStringFactory<Options extends StringOptions>(
+export function IsStringRecipe<Options extends StringOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (

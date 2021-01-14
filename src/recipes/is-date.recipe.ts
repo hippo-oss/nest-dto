@@ -6,7 +6,7 @@ import { BuilderClass, DateOptions } from '../interfaces';
 // TODO: differentate date and date time decorators?
 const DEFAULT_FORMAT = 'date-time';
 
-export function IsDateFactory<Options extends DateOptions>(
+export function IsDateRecipe<Options extends DateOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (

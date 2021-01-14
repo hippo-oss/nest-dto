@@ -3,7 +3,7 @@ import { IsNumber, Max, Min } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, NumberOptions } from '../interfaces';
 
-export function IsNumberFactory<Options extends NumberOptions>(
+export function IsNumberRecipe<Options extends NumberOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
     return (

@@ -1,4 +1,4 @@
-import { createBuilder } from '../../builder-factory';
+import { createBuilder } from '../../builder';
 import { BarOptions, Bar } from './bar.mixin';
 import { FooOptions, Foo } from './foo.mixin';
 

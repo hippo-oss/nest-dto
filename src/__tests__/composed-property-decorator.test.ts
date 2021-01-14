@@ -1,4 +1,4 @@
-import { composePropertyDecorators } from '../builder-factory';
+import { composePropertyDecorators } from '../builder';
 
 describe('composePropertyDecorators', () => {
     it('composes multiple property decorators', () => {
