@@ -4,10 +4,10 @@ import { Test } from '@nestjs/testing';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { flavor } from '../swagger';
+import { flavor } from '../openapi';
 import { INPUT, createFixtures } from './fixtures';
 
-describe('flavors.swagger', () => {
+describe('flavors.openapi', () => {
     const Example = createFixtures(flavor);
 
     /* NB: it's tricky to correctly define the return type of `createFixtures` and
@@ -76,7 +76,7 @@ describe('flavors.swagger', () => {
         expect(errors).toHaveLength(8);
         expect(errors).toMatchSnapshot();
     });
-    it('generates swagger', async () => {
+    it('generates OpenAPI spec', async () => {
         const moduleRef = await Test.createTestingModule({
             controllers: [
                 ExampleController,

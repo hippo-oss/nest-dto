@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`flavors.swagger does not transform input data if extraneous values are excluded 1`] = `
+exports[`flavors.openapi does not transform input data if extraneous values are excluded 1`] = `
 Array [
   ValidationError {
     "children": Array [],
@@ -84,7 +84,7 @@ Array [
 ]
 `;
 
-exports[`flavors.swagger generates swagger 1`] = `
+exports[`flavors.openapi generates OpenAPI spec 1`] = `
 Object {
   "components": Object {
     "schemas": Object {
@@ -225,11 +225,11 @@ Object {
 }
 `;
 
-exports[`flavors.swagger transforms input data 1`] = `Array []`;
+exports[`flavors.openapi transforms input data 1`] = `Array []`;
 
-exports[`flavors.swagger validates required fields 1`] = `Example {}`;
+exports[`flavors.openapi validates required fields 1`] = `Example {}`;
 
-exports[`flavors.swagger validates required fields 2`] = `
+exports[`flavors.openapi validates required fields 2`] = `
 Array [
   ValidationError {
     "children": Array [],
