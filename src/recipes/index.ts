@@ -1,5 +1,6 @@
 export * from './is-boolean.recipe';
 export * from './is-date.recipe';
+export * from './is-date-string.recipe';
 export * from './is-enum.recipe';
 export * from './is-integer.recipe';
 export * from './is-nested.recipe';

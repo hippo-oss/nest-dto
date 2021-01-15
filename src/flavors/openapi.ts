@@ -4,6 +4,7 @@ import { createBuilder } from '../builder';
 import {
     BooleanOptions,
     DateOptions,
+    DateStringOptions,
     EnumOptions,
     Flavor,
     IntegerOptions,
@@ -23,6 +24,7 @@ import {
 import {
     IsBooleanRecipe,
     IsDateRecipe,
+    IsDateStringRecipe,
     IsEnumRecipe,
     IsIntegerRecipe,
     IsNestedRecipe,
@@ -47,6 +49,7 @@ function createBuilderWithMixins<Options>() {
 export const flavor: Flavor<FlavorOptions> = {
     IsBoolean: IsBooleanRecipe(createBuilderWithMixins<FlavorOptions & BooleanOptions>()),
     IsDate: IsDateRecipe(createBuilderWithMixins<FlavorOptions & DateOptions>()),
+    IsDateString: IsDateStringRecipe(createBuilderWithMixins<FlavorOptions & DateStringOptions>()),
     IsEnum: IsEnumRecipe(createBuilderWithMixins<FlavorOptions & EnumOptions>()),
     IsInteger: IsIntegerRecipe(createBuilderWithMixins<FlavorOptions & IntegerOptions>()),
     IsNested: IsNestedRecipe(createBuilderWithMixins<FlavorOptions & NestedOptions>()),

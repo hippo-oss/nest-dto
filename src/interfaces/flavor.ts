@@ -1,6 +1,7 @@
 import {
     BooleanOptions,
     DateOptions,
+    DateStringOptions,
     EnumOptions,
     IntegerOptions,
     NestedOptions,
@@ -14,6 +15,7 @@ import {
 export interface Flavor<Options> {
     IsBoolean: (options?: Options & BooleanOptions) => PropertyDecorator,
     IsDate: (options?: Options & DateOptions) => PropertyDecorator,
+    IsDateString: (options?: Options & DateStringOptions) => PropertyDecorator,
     // NB: IsEnum had mandatory options
     IsEnum: (options: Options & EnumOptions) => PropertyDecorator,
     IsInteger: (options?: Options & IntegerOptions) => PropertyDecorator,

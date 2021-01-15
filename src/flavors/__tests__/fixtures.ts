@@ -1,4 +1,3 @@
-import { DateFormat } from '../../enums';
 import { Constructor } from '../../interfaces';
 
 import { BasicFlavor, OpenAPIFlavor } from '..';
@@ -21,6 +20,7 @@ export function createFixtures(
     const {
         IsBoolean,
         IsDate,
+        IsDateString,
         IsEnum,
         IsInteger,
         IsNested,
@@ -47,9 +47,7 @@ export function createFixtures(
         @IsBoolean()
         requiredBooleanValue!: boolean;
 
-        @IsDate({
-            format: DateFormat.DATE,
-        })
+        @IsDateString()
         requiredDateStringValue!: string;
 
         @IsDate()
@@ -82,8 +80,7 @@ export function createFixtures(
         })
         optionalBooleanValue?: boolean;
 
-        @IsDate({
-            format: DateFormat.DATE,
+        @IsDateString({
             optional: true,
         })
         optionalDateStringValue?: string;
