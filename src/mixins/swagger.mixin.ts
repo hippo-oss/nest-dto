@@ -15,8 +15,11 @@ export interface SwaggerOptions {
 
 type BaseBuilder = HasOptions<SwaggerOptions> & HasPropertyDecorators;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B) {
+export interface Swaggering {
+    api(): this;
+}
+
+export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B): Constructor<Swaggering> & B {
     return class ClassValidatorMixin extends Base {
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

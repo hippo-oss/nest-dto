@@ -7,10 +7,10 @@
     "author": "Hippo Engineering",
     "license": "MIT",
     "private": false,
-    "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
+    "main": "./dist/index.js",
     "scripts": {
         "build": "tsc --build tsconfig.build.json",
         "build:force": "tsc --build tsconfig.build.json --force",

@@ -1,4 +1,4 @@
-import { Builder } from './interfaces';
+import { Builder, Constructor } from './interfaces';
 
 /* Compose a collection of input decorators into a single decorator.
  */
@@ -18,13 +18,12 @@ export function composePropertyDecorators(decorators: PropertyDecorator[]): Prop
  * TypeScript doesn't allow passing a typed class (e.g. `Builder<Options>`) to a mixin,
  * but does allow passing a typed function call that returns a class (e.g. `createBuilder<Options>()`)
  */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function createBuilder<Options>() {
+export function createBuilder<Options>(): Constructor<Builder<Options>> {
     return class BaseBuilder implements Builder<Options> {
         constructor(
             public readonly options: Options,
             public decorators: PropertyDecorator[] = [],
-        ) { }
+        ) {}
 
         public add(...decorators: PropertyDecorator[]): this {
             this.decorators.push(...decorators.filter(
