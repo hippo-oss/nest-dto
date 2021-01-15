@@ -15,7 +15,7 @@ describe('flavors.openapi', () => {
      * if we use it directly.
      *
      * Fortunately, we can define the return type as a `Constructor` and use a subclass,
-     * which satisfied the compilere.
+     * which satisfied the compiler.
      */
     class ExampleDTO extends Example {}
 

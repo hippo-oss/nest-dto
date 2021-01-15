@@ -10,6 +10,7 @@ export interface SwaggerOptions {
     nullable?: boolean;
     minimum?: number,
     maximum?: number,
+    optional: boolean,
     type?: string,
 }
 
@@ -39,6 +40,7 @@ export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B): Constr
                     minimum: this.options.minimum,
                     maximum: this.options.maximum,
                     nullable: this.options.nullable,
+                    required: !this.options.optional,
                     type: this.options.type,
                 }),
             );
