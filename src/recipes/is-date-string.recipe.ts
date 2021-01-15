@@ -1,4 +1,4 @@
-import { IsDateString } from 'class-validator';
+import { IsISO8601 } from 'class-validator';
 
 import { BuilderClass, DateStringOptions } from '../interfaces';
 
@@ -17,6 +17,6 @@ export function IsDateStringRecipe<Options extends DateStringOptions>(
         format: FORMAT,
     }).add(
         // validate data as a DateString
-        IsDateString(),
+        IsISO8601(),
     ).build();
 }
