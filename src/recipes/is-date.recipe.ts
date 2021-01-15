@@ -3,7 +3,7 @@ import { IsDate } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, DateOptions } from '../interfaces';
 
-// TODO: differentate date and date time decorators?
+// TODO: differentiate date and date time decorators?
 const DEFAULT_FORMAT = 'date-time';
 
 export function IsDateRecipe<Options extends DateOptions>(

@@ -1,5 +1,6 @@
 export * from './boolean.options';
 export * from './date.options';
+export * from './date-string.options';
 export * from './enum.options';
 export * from './integer.options';
 export * from './nested.options';

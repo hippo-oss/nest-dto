@@ -20,6 +20,7 @@ export function createFixtures(
     const {
         IsBoolean,
         IsDate,
+        IsDateString,
         IsEnum,
         IsInteger,
         IsNested,
@@ -45,6 +46,9 @@ export function createFixtures(
     class Example {
         @IsBoolean()
         requiredBooleanValue!: boolean;
+
+        @IsDateString()
+        requiredDateStringValue!: string;
 
         @IsDate()
         requiredDateValue!: Date;
@@ -75,6 +79,11 @@ export function createFixtures(
             optional: true,
         })
         optionalBooleanValue?: boolean;
+
+        @IsDateString({
+            optional: true,
+        })
+        optionalDateStringValue?: string;
 
         @IsDate({
             optional: true,
@@ -119,6 +128,7 @@ export function createFixtures(
 
 export const INPUT = {
     requiredBooleanValue: 'true',
+    requiredDateStringValue: '2021-01-12',
     requiredDateValue: '2021-01-12T01:12:38.956Z',
     requiredEnumValue: 'Value',
     requiredIntegerValue: '42',
@@ -130,6 +140,7 @@ export const INPUT = {
     requiredUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
 
     optionalBooleanValue: 'true',
+    optionalDateStringValue: '2021-01-12',
     optionalDateValue: '2021-01-12T01:12:38.956Z',
     optionalEnumValue: 'Value',
     optionalIntegerValue: '42',

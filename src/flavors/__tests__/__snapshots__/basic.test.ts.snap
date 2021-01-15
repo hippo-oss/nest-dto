@@ -15,6 +15,16 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
+      "isDefined": "requiredDateStringValue should not be null or undefined",
+      "isIso8601": "requiredDateStringValue must be a valid ISO 8601 date string",
+    },
+    "property": "requiredDateStringValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isDate": "requiredDateValue must be a Date instance",
       "isDefined": "requiredDateValue should not be null or undefined",
     },
@@ -97,6 +107,16 @@ Array [
       "isDefined": "requiredBooleanValue should not be null or undefined",
     },
     "property": "requiredBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "requiredDateStringValue should not be null or undefined",
+      "isIso8601": "requiredDateStringValue must be a valid ISO 8601 date string",
+    },
+    "property": "requiredDateStringValue",
     "target": Example {},
     "value": undefined,
   },

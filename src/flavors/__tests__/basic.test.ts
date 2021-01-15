@@ -16,14 +16,14 @@ describe('flavors.basic', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(8);
+        expect(errors).toHaveLength(9);
         expect(errors).toMatchSnapshot();
     });
     it('transforms input data', async () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(16);
+        expect(Object.keys(obj)).toHaveLength(18);
         expect(obj).toMatchObject({
             requiredNestedValue: {
                 requiredStringValue: 'nested',
@@ -48,7 +48,7 @@ describe('flavors.basic', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(8);
+        expect(errors).toHaveLength(9);
         expect(errors).toMatchSnapshot();
     });
 });
