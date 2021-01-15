@@ -10,7 +10,7 @@ export interface SwaggerOptions {
     nullable?: boolean;
     minimum?: number,
     maximum?: number,
-    optional: boolean,
+    optional?: boolean,
     type?: string,
 }
 
