@@ -7,14 +7,19 @@ import {
     TypeFunction,
     TypePropertyDecorator,
 } from '../adapters';
-import { BuilderClass } from '../interfaces';
+import { BuilderClass, Constructor } from '../interfaces';
 
 export interface TransformerOptions {
     expose?: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function withTransformer<B extends BuilderClass<TransformerOptions>>(Base: B) {
+export interface Transforming {
+    expose(options?: ExposeOptions): this;
+    transform(transformFn: TransformFunction, options?: TransformOptions): this;
+    type(typeFn: TypeFunction, options?: TypeOptions): this;
+}
+
+export function withTransformer<B extends BuilderClass<TransformerOptions>>(Base: B): Constructor<Transforming> & B {
     return class ClassTransformerMixin extends Base {
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
