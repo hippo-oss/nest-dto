@@ -1,29 +1,43 @@
-import { IsDate } from 'class-validator';
+import { IsDate, IsISO8601 } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
+import { DateFormat } from '../enums';
 import { BuilderClass, DateOptions } from '../interfaces';
 
-// TODO: differentate date and date time decorators?
-const DEFAULT_FORMAT = 'date-time';
+const DEFAULT_FORMAT = DateFormat.DATE_TIME;
 
 export function IsDateRecipe<Options extends DateOptions>(
     Builder: BuilderClass<Options>,
 ): (options?: Options) => PropertyDecorator {
-    return (
+    return function (
         options?: Options,
-    ): PropertyDecorator => new Builder({
-        ...(options || {}),
+    ): PropertyDecorator {
+        const builder = new Builder({
+            ...(options || {}),
 
-        // OpenAPI expresses dates as a string format (either 'date' or 'date-time')
-        type: 'string',
-        format: options?.format || DEFAULT_FORMAT,
-    }).add(
-        // TODO: validate the input string before transforming to a Date object
+            // OpenAPI expresses dates as a string format (either 'date' or 'date-time')
+            type: 'string',
+            format: options?.format || DEFAULT_FORMAT,
+        });
 
-        // convert strings to Dates
-        TypePropertyDecorator(() => Date),
+        if (options?.format === DateFormat.DATE_TIME) {
+            builder.add(
+                // TODO: validate the input string before transforming to a Date object
 
-        // validate data as a Date
-        IsDate(),
-    ).build();
+                // convert strings to Dates
+                TypePropertyDecorator(() => Date),
+
+                // validate data as a DateTime
+                IsDate(),
+            );
+        }
+
+        if (options?.format === DateFormat.DATE) {
+            builder.add(
+                IsISO8601(),
+            );
+        }
+
+        return builder.build();
+    };
 }

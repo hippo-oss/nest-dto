@@ -1,3 +1,5 @@
+import { DateFormat } from '../../enums';
+
 export interface DateOptions {
-    format?: string,
+    format?: DateFormat,
 }

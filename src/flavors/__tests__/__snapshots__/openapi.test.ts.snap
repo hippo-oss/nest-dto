@@ -15,7 +15,16 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "isDate": "requiredDateValue must be a Date instance",
+      "isDefined": "requiredDateStringValue should not be null or undefined",
+      "isIso8601": "requiredDateStringValue must be a valid ISO 8601 date string",
+    },
+    "property": "requiredDateStringValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isDefined": "requiredDateValue should not be null or undefined",
     },
     "property": "requiredDateValue",
@@ -93,6 +102,10 @@ Object {
           "optionalBooleanValue": Object {
             "type": "boolean",
           },
+          "optionalDateStringValue": Object {
+            "format": "date",
+            "type": "string",
+          },
           "optionalDateValue": Object {
             "format": "date-time",
             "type": "string",
@@ -118,6 +131,10 @@ Object {
           },
           "requiredBooleanValue": Object {
             "type": "boolean",
+          },
+          "requiredDateStringValue": Object {
+            "format": "date",
+            "type": "string",
           },
           "requiredDateValue": Object {
             "format": "date-time",
@@ -145,6 +162,7 @@ Object {
         },
         "required": Array [
           "requiredBooleanValue",
+          "requiredDateStringValue",
           "requiredDateValue",
           "requiredEnumValue",
           "requiredIntegerValue",
@@ -153,6 +171,7 @@ Object {
           "requiredStringValue",
           "requiredUUIDValue",
           "optionalBooleanValue",
+          "optionalDateStringValue",
           "optionalDateValue",
           "optionalEnumValue",
           "optionalIntegerValue",
@@ -244,7 +263,16 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "isDate": "requiredDateValue must be a Date instance",
+      "isDefined": "requiredDateStringValue should not be null or undefined",
+      "isIso8601": "requiredDateStringValue must be a valid ISO 8601 date string",
+    },
+    "property": "requiredDateStringValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isDefined": "requiredDateValue should not be null or undefined",
     },
     "property": "requiredDateValue",
