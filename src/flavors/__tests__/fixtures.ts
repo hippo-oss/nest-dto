@@ -18,6 +18,7 @@ export function createFixtures(
     flavor: BasicFlavor | OpenAPIFlavor,
 ): Constructor {
     const {
+        IsArray,
         IsBoolean,
         IsDate,
         IsDateString,
@@ -51,6 +52,16 @@ export function createFixtures(
     class Example {
         /* Create one property of each type that is required. */
 
+        @IsArray({
+            type: NestedRequiredExample,
+        })
+        requiredObjectArrayValue!: NestedRequiredExample[];
+
+        @IsArray({
+            type: Number,
+        })
+        requiredPrimitiveArrayValue!: number[];
+
         @IsBoolean()
         requiredBooleanValue!: boolean;
 
@@ -69,7 +80,7 @@ export function createFixtures(
         requiredIntegerValue!: number;
 
         @IsNested({
-            nested: NestedRequiredExample,
+            type: NestedRequiredExample,
         })
         requiredNestedValue!: NestedRequiredExample;
 
@@ -83,6 +94,18 @@ export function createFixtures(
         requiredUUIDValue!: string;
 
         /* Create one property of each type that is optional. */
+
+        @IsArray({
+            type: NestedOptionalExample,
+            optional: true,
+        })
+        optionalObjectArrayValue?: NestedOptionalExample[];
+
+        @IsArray({
+            type: Number,
+            optional: true,
+        })
+        optionalPrimitiveArrayValue?: number[];
 
         @IsBoolean({
             optional: true,
@@ -111,7 +134,7 @@ export function createFixtures(
         optionalIntegerValue?: number;
 
         @IsNested({
-            nested: NestedOptionalExample,
+            type: NestedOptionalExample,
             optional: true,
         })
         optionalNestedValue?: NestedOptionalExample;
@@ -132,6 +155,18 @@ export function createFixtures(
         optionalUUIDValue?: string;
 
         /* Create one property of each type that is nullable. */
+
+        @IsArray({
+            type: NestedNullableExample,
+            nullable: true,
+        })
+        nullableObjectArrayValue!: NestedNullableExample[] | null;
+
+        @IsArray({
+            type: Number,
+            nullable: true,
+        })
+        nullablePrimitiveArrayValue!: number[] | null;
 
         @IsBoolean({
             nullable: true,
@@ -160,7 +195,7 @@ export function createFixtures(
         nullableIntegerValue!: number | null;
 
         @IsNested({
-            nested: NestedNullableExample,
+            type: NestedNullableExample,
             nullable: true,
         })
         nullableNestedValue!: NestedNullableExample | null;
@@ -185,6 +220,14 @@ export function createFixtures(
 }
 
 export const INPUT = {
+    requiredObjectArrayValue: [
+        {
+            requiredStringValue: 'nested',
+        },
+    ],
+    requiredPrimitiveArrayValue: [
+        '42',
+    ],
     requiredBooleanValue: 'true',
     requiredDateStringValue: '2021-01-12',
     requiredDateValue: '2021-01-12T01:12:38.956Z',
@@ -197,6 +240,14 @@ export const INPUT = {
     requiredStringValue: 'value',
     requiredUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
 
+    optionalObjectArrayValue: [
+        {
+            optionalStringValue: 'nested',
+        },
+    ],
+    optionalPrimitiveArrayValue: [
+        '42',
+    ],
     optionalBooleanValue: 'true',
     optionalDateStringValue: '2021-01-12',
     optionalDateValue: '2021-01-12T01:12:38.956Z',
@@ -209,6 +260,14 @@ export const INPUT = {
     optionalStringValue: 'value',
     optionalUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
 
+    nullableObjectArrayValue: [
+        {
+            nullableStringValue: 'nested',
+        },
+    ],
+    nullablePrimitiveArrayValue: [
+        '42',
+    ],
     nullableBooleanValue: 'true',
     nullableDateStringValue: '2021-01-12',
     nullableDateValue: '2021-01-12T01:12:38.956Z',

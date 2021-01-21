@@ -20,10 +20,10 @@ export function IsNumberRecipe<Options extends NumberOptions>(
         // validate data as a number
         IsNumber(),
 
-        // maybe: add a maximum
-        options?.maximum !== undefined ? Max(options.maximum) : undefined,
+        // maybe: add a maximum value
+        options?.maxValue !== undefined ? Max(options.maxValue) : undefined,
 
-        // maybe: add a minium
-        options?.minimum !== undefined ? Min(options.minimum) : undefined,
+        // maybe: add a minimum value
+        options?.minValue !== undefined ? Min(options.minValue) : undefined,
     ).build();
 }

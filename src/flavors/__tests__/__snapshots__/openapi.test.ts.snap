@@ -5,6 +5,26 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
+      "isArray": "requiredObjectArrayValue must be an array",
+      "isDefined": "requiredObjectArrayValue should not be null or undefined",
+    },
+    "property": "requiredObjectArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredPrimitiveArrayValue must be an array",
+      "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
+    },
+    "property": "requiredPrimitiveArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isBoolean": "requiredBooleanValue must be a boolean value",
       "isDefined": "requiredBooleanValue should not be null or undefined",
     },
@@ -134,6 +154,20 @@ Object {
             "nullable": true,
             "type": "number",
           },
+          "nullableObjectArrayValue": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/NestedNullableExample",
+            },
+            "nullable": true,
+            "type": "array",
+          },
+          "nullablePrimitiveArrayValue": Object {
+            "items": Object {
+              "type": "number",
+            },
+            "nullable": true,
+            "type": "array",
+          },
           "nullableStringValue": Object {
             "nullable": true,
             "type": "string",
@@ -166,6 +200,18 @@ Object {
           "optionalNumberValue": Object {
             "type": "number",
           },
+          "optionalObjectArrayValue": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/NestedOptionalExample",
+            },
+            "type": "array",
+          },
+          "optionalPrimitiveArrayValue": Object {
+            "items": Object {
+              "type": "number",
+            },
+            "type": "array",
+          },
           "optionalStringValue": Object {
             "type": "string",
           },
@@ -196,6 +242,18 @@ Object {
           "requiredNumberValue": Object {
             "type": "number",
           },
+          "requiredObjectArrayValue": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/NestedRequiredExample",
+            },
+            "type": "array",
+          },
+          "requiredPrimitiveArrayValue": Object {
+            "items": Object {
+              "type": "number",
+            },
+            "type": "array",
+          },
           "requiredStringValue": Object {
             "type": "string",
           },
@@ -205,6 +263,8 @@ Object {
           },
         },
         "required": Array [
+          "requiredObjectArrayValue",
+          "requiredPrimitiveArrayValue",
           "requiredBooleanValue",
           "requiredDateStringValue",
           "requiredDateValue",
@@ -214,6 +274,8 @@ Object {
           "requiredNumberValue",
           "requiredStringValue",
           "requiredUUIDValue",
+          "nullableObjectArrayValue",
+          "nullablePrimitiveArrayValue",
           "nullableBooleanValue",
           "nullableDateStringValue",
           "nullableDateValue",
@@ -305,6 +367,26 @@ exports[`flavors.openapi validates required fields 1`] = `Example {}`;
 
 exports[`flavors.openapi validates required fields 2`] = `
 Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredObjectArrayValue must be an array",
+      "isDefined": "requiredObjectArrayValue should not be null or undefined",
+    },
+    "property": "requiredObjectArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredPrimitiveArrayValue must be an array",
+      "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
+    },
+    "property": "requiredPrimitiveArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
   ValidationError {
     "children": Array [],
     "constraints": Object {
