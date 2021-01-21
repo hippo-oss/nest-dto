@@ -57,6 +57,7 @@ export function createFixtures(flavor: Flavor): Constructor {
 
         @IsEnum({
             enum: ExampleEnum,
+            enumName: 'Example',
         })
         requiredEnumValue!: ExampleEnum;
 
@@ -108,6 +109,7 @@ export function createFixtures(flavor: Flavor): Constructor {
 
         @IsEnum({
             enum: ExampleEnum,
+            enumName: 'Example',
             optional: true,
         })
         optionalEnumValue?: ExampleEnum;
@@ -169,6 +171,7 @@ export function createFixtures(flavor: Flavor): Constructor {
 
         @IsEnum({
             enum: ExampleEnum,
+            enumName: 'Example',
             nullable: true,
         })
         nullableEnumValue!: ExampleEnum | null;
