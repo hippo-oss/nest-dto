@@ -1,9 +1,9 @@
 import { Constructor } from '../constructor';
 
-export interface ArrayOptions {
+import { DecoratorOptions } from './decorator.options';
+
+export interface ArrayOptions extends DecoratorOptions {
     type: Constructor,
     maxItems?: number,
     minItems?: number,
-    nullable?: boolean,
-    optional?: boolean,
 }

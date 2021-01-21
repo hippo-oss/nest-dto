@@ -2,7 +2,7 @@ import { IsISO8601 } from 'class-validator';
 
 import { BuilderClass, DateStringOptions } from '../interfaces';
 
-const FORMAT = 'date';
+const DEFAULT_FORMAT = 'date';
 
 export function IsDateStringRecipe<Options extends DateStringOptions>(
     Builder: BuilderClass<Options>,
@@ -14,7 +14,7 @@ export function IsDateStringRecipe<Options extends DateStringOptions>(
 
         // OpenAPI expresses dates as a string format (either 'date' or 'date-time')
         type: 'string',
-        format: FORMAT,
+        format: options?.format || DEFAULT_FORMAT,
     }).add(
         // validate data as a DateString
         IsISO8601(),
