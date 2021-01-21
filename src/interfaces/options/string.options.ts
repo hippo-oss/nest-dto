@@ -1,5 +1,7 @@
 export interface StringOptions {
-    pattern?: RegExp;
     maxLength?: number,
     minLength?: number,
+    nullable?: boolean,
+    optional?: boolean,
+    pattern?: RegExp;
 }
