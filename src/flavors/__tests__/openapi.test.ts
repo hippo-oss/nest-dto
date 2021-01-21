@@ -48,13 +48,16 @@ describe('flavors.openapi', () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(18);
+        expect(Object.keys(obj)).toHaveLength(27);
         expect(obj).toMatchObject({
             requiredNestedValue: {
                 requiredStringValue: 'nested',
             },
             optionalNestedValue: {
                 optionalStringValue: 'nested',
+            },
+            nullableNestedValue: {
+                nullableStringValue: 'nested',
             },
         });
 
