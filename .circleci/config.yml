@@ -23,6 +23,11 @@ orbs:
               name: Install yarn
               command: |
                 sudo npm install -g -f yarn@latest
+      release-library:
+        steps:
+          - run:
+              name: Release library
+              command: yarn publish --access-public --no-defaut-rc --non-interactive
       restore-workspace:
         steps:
           - attach_workspace:
@@ -174,6 +179,16 @@ orbs:
           executor:
             type: executor
             default: default
+      release:
+        executor: << parameters.executor >>
+        steps:
+          - restore-workspace
+          - restore-yarn-cache
+          - release-library
+        parameters:
+          executor:
+            type: executor
+            default: default
 
 workflows:
     build-and-release:
@@ -200,3 +215,15 @@ workflows:
             filters:
               tags:
                 only: /.*/
+        - hippo/release:
+            context: npmjs
+            requires:
+              - hippo/build
+              - hippo/coverage
+              - hippo/lint
+              - hippo/test
+            filters:
+              branches:
+                ignore: /.*/
+              tags:
+                only: /^[0-9]+(\.[0-9]+)*/

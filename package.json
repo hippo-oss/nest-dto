@@ -1,5 +1,5 @@
 {
-    "name": "@hippo/nest-dto",
+    "name": "@hippo-oss/nest-dto",
     "version": "0.1.0",
     "description": "NestJS DTO decorators.",
     "main": "dist/index.js",
