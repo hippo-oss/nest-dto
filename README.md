@@ -46,7 +46,7 @@ export class ExampleDTO {
 With `nest-dto`, this declaration becomes:
 
 ```ts
-import { openapi } from '@hippo/nest-dto';
+import { openapi } from '@hippo-oss/nest-dto';
 
 
 export class ExampleDTO {
