@@ -27,7 +27,7 @@ orbs:
         steps:
           - run:
               name: Release library
-              command: yarn publish --access-public --no-defaut-rc --non-interactive
+              command: yarn publish --access=public --no-default-rc --non-interactive
       restore-workspace:
         steps:
           - attach_workspace:
