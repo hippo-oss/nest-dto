@@ -100,6 +100,49 @@ Object {
     "schemas": Object {
       "ExampleDTO": Object {
         "properties": Object {
+          "nullableBooleanValue": Object {
+            "nullable": true,
+            "type": "boolean",
+          },
+          "nullableDateStringValue": Object {
+            "format": "date",
+            "nullable": true,
+            "type": "string",
+          },
+          "nullableDateValue": Object {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "nullableEnumValue": Object {
+            "$ref": "#/components/schemas/Object",
+            "nullable": true,
+          },
+          "nullableIntegerValue": Object {
+            "nullable": true,
+            "type": "integer",
+          },
+          "nullableNestedValue": Object {
+            "allOf": Array [
+              Object {
+                "$ref": "#/components/schemas/NestedNullableExample",
+              },
+            ],
+            "nullable": true,
+          },
+          "nullableNumberValue": Object {
+            "nullable": true,
+            "type": "number",
+          },
+          "nullableStringValue": Object {
+            "nullable": true,
+            "type": "string",
+          },
+          "nullableUUIDValue": Object {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string",
+          },
           "optionalBooleanValue": Object {
             "type": "boolean",
           },
@@ -171,6 +214,26 @@ Object {
           "requiredNumberValue",
           "requiredStringValue",
           "requiredUUIDValue",
+          "nullableBooleanValue",
+          "nullableDateStringValue",
+          "nullableDateValue",
+          "nullableEnumValue",
+          "nullableIntegerValue",
+          "nullableNestedValue",
+          "nullableNumberValue",
+          "nullableStringValue",
+          "nullableUUIDValue",
+        ],
+        "type": "object",
+      },
+      "NestedNullableExample": Object {
+        "properties": Object {
+          "nullableStringValue": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "nullableStringValue",
         ],
         "type": "object",
       },

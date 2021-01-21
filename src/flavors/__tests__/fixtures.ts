@@ -43,7 +43,14 @@ export function createFixtures(
         optionalStringValue?: string;
     }
 
+    class NestedNullableExample {
+        @IsString()
+        nullableStringValue!: string | null;
+    }
+
     class Example {
+        /* Create one property of each type that is required. */
+
         @IsBoolean()
         requiredBooleanValue!: boolean;
 
@@ -74,6 +81,8 @@ export function createFixtures(
 
         @IsUUID()
         requiredUUIDValue!: string;
+
+        /* Create one property of each type that is optional. */
 
         @IsBoolean({
             optional: true,
@@ -121,6 +130,55 @@ export function createFixtures(
             optional: true,
         })
         optionalUUIDValue?: string;
+
+        /* Create one property of each type that is nullable. */
+
+        @IsBoolean({
+            nullable: true,
+        })
+        nullableBooleanValue!: boolean | null;
+
+        @IsDateString({
+            nullable: true,
+        })
+        nullableDateStringValue!: string | null;
+
+        @IsDate({
+            nullable: true,
+        })
+        nullableDateValue!: Date | null;
+
+        @IsEnum({
+            enum: ExampleEnum,
+            nullable: true,
+        })
+        nullableEnumValue!: ExampleEnum | null;
+
+        @IsInteger({
+            nullable: true,
+        })
+        nullableIntegerValue!: number | null;
+
+        @IsNested({
+            nested: NestedNullableExample,
+            nullable: true,
+        })
+        nullableNestedValue!: NestedNullableExample | null;
+
+        @IsNumber({
+            nullable: true,
+        })
+        nullableNumberValue!: number | null;
+
+        @IsString({
+            nullable: true,
+        })
+        nullableStringValue!: string | null;
+
+        @IsUUID({
+            nullable: true,
+        })
+        nullableUUIDValue!: string | null;
     }
 
     return Example;
@@ -150,4 +208,16 @@ export const INPUT = {
     optionalNumberValue: '42.0',
     optionalStringValue: 'value',
     optionalUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
+
+    nullableBooleanValue: 'true',
+    nullableDateStringValue: '2021-01-12',
+    nullableDateValue: '2021-01-12T01:12:38.956Z',
+    nullableEnumValue: 'Value',
+    nullableIntegerValue: '42',
+    nullableNestedValue: {
+        nullableStringValue: 'nested',
+    },
+    nullableNumberValue: '42.0',
+    nullableStringValue: 'value',
+    nullableUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
 };

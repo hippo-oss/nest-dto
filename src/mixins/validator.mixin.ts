@@ -3,6 +3,9 @@ import { IsDefined, IsOptional } from 'class-validator';
 import { BuilderClass, Constructor } from '../interfaces';
 
 export interface ValidatorOptions {
+    // nullable means that the value type should be "T | null"
+    nullable?: boolean;
+    // optional means that the value type should be "T | undefined"
     optional?: boolean;
 }
 
@@ -18,7 +21,7 @@ export function withValidator<B extends BuilderClass<ValidatorOptions>>(Base: B)
         constructor(...args: any[]) {
             super(...args);
 
-            if (this.options.optional) {
+            if (this.options.optional || this.options.nullable) {
                 this.optional();
             } else {
                 this.required();
