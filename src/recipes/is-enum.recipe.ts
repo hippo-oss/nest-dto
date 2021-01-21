@@ -1,4 +1,5 @@
 import { IsEnum } from 'class-validator';
+import 'reflect-metadata';
 
 import { BuilderClass, EnumOptions } from '../interfaces';
 
@@ -15,7 +16,7 @@ export function IsEnumRecipe<Options extends EnumOptions>(
          * `enumName` is used.
          */
         enum: options.enum,
-        enumName: options.enumName || options.enum.constructor.name,
+        enumName: options.enumName,
     }).add(
         // validate data as an enum
         IsEnum(options.enum),
