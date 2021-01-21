@@ -1,3 +1,4 @@
+export * from './array.options';
 export * from './boolean.options';
 export * from './date.options';
 export * from './date-string.options';

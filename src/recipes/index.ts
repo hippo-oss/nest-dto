@@ -1,3 +1,4 @@
+export * from './is-array.recipe';
 export * from './is-boolean.recipe';
 export * from './is-date.recipe';
 export * from './is-date-string.recipe';

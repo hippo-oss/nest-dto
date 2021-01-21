@@ -2,6 +2,7 @@
  */
 import { createBuilder } from '../builder';
 import {
+    ArrayOptions,
     BooleanOptions,
     DateOptions,
     DateStringOptions,
@@ -22,6 +23,7 @@ import {
     withValidator,
 } from '../mixins';
 import {
+    IsArrayRecipe,
     IsBooleanRecipe,
     IsDateRecipe,
     IsDateStringRecipe,
@@ -47,6 +49,7 @@ function createBuilderWithMixins<Options>() {
 }
 
 export const flavor: Flavor<FlavorOptions> = {
+    IsArray: IsArrayRecipe(createBuilderWithMixins<FlavorOptions & ArrayOptions>()),
     IsBoolean: IsBooleanRecipe(createBuilderWithMixins<FlavorOptions & BooleanOptions>()),
     IsDate: IsDateRecipe(createBuilderWithMixins<FlavorOptions & DateOptions>()),
     IsDateString: IsDateStringRecipe(createBuilderWithMixins<FlavorOptions & DateStringOptions>()),

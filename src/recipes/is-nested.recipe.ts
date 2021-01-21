@@ -12,10 +12,10 @@ export function IsNestedRecipe<Options extends NestedOptions>(
         ...options,
 
         // set type to nested type
-        type: options.nested,
+        type: options.type,
     }).add(
         // convert to nested type
-        TypePropertyDecorator(() => options.nested),
+        TypePropertyDecorator(() => options.type),
 
         // validate nested
         ValidateNested(),

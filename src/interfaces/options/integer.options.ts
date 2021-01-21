@@ -1,4 +1,4 @@
 export interface IntegerOptions {
-    maximum?: number,
-    minimum?: number,
+    maxValue?: number,
+    minValue?: number,
 }

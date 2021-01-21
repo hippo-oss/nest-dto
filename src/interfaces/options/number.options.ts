@@ -1,4 +1,4 @@
 export interface NumberOptions {
-    maximum?: number,
-    minimum?: number,
+    maxValue?: number,
+    minValue?: number,
 }

@@ -5,6 +5,26 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
+      "isArray": "requiredObjectArrayValue must be an array",
+      "isDefined": "requiredObjectArrayValue should not be null or undefined",
+    },
+    "property": "requiredObjectArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredPrimitiveArrayValue must be an array",
+      "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
+    },
+    "property": "requiredPrimitiveArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isBoolean": "requiredBooleanValue must be a boolean value",
       "isDefined": "requiredBooleanValue should not be null or undefined",
     },
@@ -100,6 +120,26 @@ exports[`flavors.basic validates required fields 1`] = `Example {}`;
 
 exports[`flavors.basic validates required fields 2`] = `
 Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredObjectArrayValue must be an array",
+      "isDefined": "requiredObjectArrayValue should not be null or undefined",
+    },
+    "property": "requiredObjectArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isArray": "requiredPrimitiveArrayValue must be an array",
+      "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
+    },
+    "property": "requiredPrimitiveArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
   ValidationError {
     "children": Array [],
     "constraints": Object {

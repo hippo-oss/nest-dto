@@ -8,10 +8,14 @@ export interface SwaggerOptions {
     enumName?: string;
     format?: string;
     nullable?: boolean;
-    minimum?: number,
-    maximum?: number,
+    maxLength?: number,
+    maxItems?: number,
+    maxValue?: number,
+    minLength?: number,
+    minItems?: number,
+    minValue?: number,
     optional?: boolean,
-    type?: string,
+    type?: string | Constructor | Constructor[],
 }
 
 type BaseBuilder = HasOptions<SwaggerOptions> & HasPropertyDecorators;
@@ -37,8 +41,12 @@ export function withSwagger<B extends Constructor<BaseBuilder>>(Base: B): Constr
                     enumName: this.options.enumName,
                     description: this.options.description,
                     format: this.options.format,
-                    minimum: this.options.minimum,
-                    maximum: this.options.maximum,
+                    maximum: this.options.maxValue,
+                    maxLength: this.options.maxLength,
+                    maxItems: this.options.maxItems,
+                    minimum: this.options.minValue,
+                    minLength: this.options.minLength,
+                    minItems: this.options.minItems,
                     nullable: this.options.nullable,
                     required: !this.options.optional,
                     type: this.options.type,
