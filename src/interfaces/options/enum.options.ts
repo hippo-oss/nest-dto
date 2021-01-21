@@ -1,6 +1,6 @@
-export interface EnumOptions {
+import { DecoratorOptions } from './decorator.options';
+
+export interface EnumOptions extends DecoratorOptions {
     enum: Record<string, unknown>,
     enumName?: string;
-    nullable?: boolean,
-    optional?: boolean,
 }

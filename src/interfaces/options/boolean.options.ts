@@ -1,4 +1,5 @@
-export interface BooleanOptions {
-    nullable?: boolean,
-    optional?: boolean,
+import { DecoratorOptions } from './decorator.options';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BooleanOptions extends DecoratorOptions {
 }

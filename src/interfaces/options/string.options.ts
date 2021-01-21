@@ -1,7 +1,7 @@
-export interface StringOptions {
+import { DecoratorOptions } from './decorator.options';
+
+export interface StringOptions extends DecoratorOptions {
     maxLength?: number,
     minLength?: number,
-    nullable?: boolean,
-    optional?: boolean,
     pattern?: RegExp;
 }

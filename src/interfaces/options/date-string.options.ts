@@ -1,4 +1,5 @@
-export interface DateStringOptions {
-    nullable?: boolean,
-    optional?: boolean,
+import { DecoratorOptions } from './decorator.options';
+
+export interface DateStringOptions extends DecoratorOptions {
+    format?: string;
 }
