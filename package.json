@@ -6,6 +6,12 @@
     "repository": "https://github.com/hippo-oss/nest-dto",
     "author": "Hippo Engineering",
     "license": "MIT",
+    "keywords": [
+        "NestJS",
+        "DTO",
+        "OpenAPI",
+        "Swagger"
+    ],
     "private": false,
     "files": [
         "dist"
