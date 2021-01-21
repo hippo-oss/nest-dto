@@ -1,3 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DateStringOptions {
+    nullable?: boolean,
+    optional?: boolean,
 }

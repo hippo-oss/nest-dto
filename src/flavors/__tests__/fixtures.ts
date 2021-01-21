@@ -1,22 +1,6 @@
-import { Constructor } from '../../interfaces';
+import { Constructor, Flavor } from '../../interfaces';
 
-import { BasicFlavor, OpenAPIFlavor } from '..';
-
-export function createFixtures(
-    /* It is rather difficult to write `createFixtures()` as a generic function
-     * that accepts any flavor of decorators.
-     *
-     * For example, attempts to add a generic Options options parameter, even one constrained
-     * to available mixin options, lead to compiler errors of the form:
-     *
-     *  "could be instantiated with a different subtype of constraint"
-     *
-     * because the compiler isn't powerful enough to perform "higher-order" type reasoning.
-     *
-     * It is, however, easy to allow a union of the flavors we wish to support.
-     */
-    flavor: BasicFlavor | OpenAPIFlavor,
-): Constructor {
+export function createFixtures(flavor: Flavor): Constructor {
     const {
         IsArray,
         IsBoolean,

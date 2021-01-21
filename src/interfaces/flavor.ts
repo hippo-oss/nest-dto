@@ -13,18 +13,15 @@ import {
 
 /* A collection of decorator recipes using a specific options type.
  */
-export interface Flavor<Options> {
-    // NB: IsArray has mandatory options
-    IsArray: (options: Options & ArrayOptions) => PropertyDecorator,
-    IsBoolean: (options?: Options & BooleanOptions) => PropertyDecorator,
-    IsDate: (options?: Options & DateOptions) => PropertyDecorator,
-    IsDateString: (options?: Options & DateStringOptions) => PropertyDecorator,
-    // NB: IsEnum has mandatory options
-    IsEnum: (options: Options & EnumOptions) => PropertyDecorator,
-    IsInteger: (options?: Options & IntegerOptions) => PropertyDecorator,
-    // NB: IsNested has mandatory options
-    IsNested: (options: Options & NestedOptions) => PropertyDecorator;
-    IsNumber: (options?: Options & NumberOptions) => PropertyDecorator,
-    IsString: (options?: Options & StringOptions) => PropertyDecorator,
-    IsUUID: (options?: Options & UUIDOptions) => PropertyDecorator,
+export interface Flavor {
+    IsArray: (options: ArrayOptions) => PropertyDecorator,
+    IsBoolean: (options?: BooleanOptions) => PropertyDecorator,
+    IsDate: (options?: DateOptions) => PropertyDecorator,
+    IsDateString: (options?: DateStringOptions) => PropertyDecorator,
+    IsEnum: (options: EnumOptions) => PropertyDecorator,
+    IsInteger: (options?: IntegerOptions) => PropertyDecorator,
+    IsNested: (options: NestedOptions) => PropertyDecorator;
+    IsNumber: (options?: NumberOptions) => PropertyDecorator,
+    IsString: (options?: StringOptions) => PropertyDecorator,
+    IsUUID: (options?: UUIDOptions) => PropertyDecorator,
 }
