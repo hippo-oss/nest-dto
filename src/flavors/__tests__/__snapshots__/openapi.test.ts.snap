@@ -105,7 +105,7 @@ Array [
     "children": Array [],
     "constraints": Object {
       "isDefined": "requiredUUIDValue should not be null or undefined",
-      "isUuid": "requiredUUIDValue must be an UUID",
+      "isUuid": "requiredUUIDValue must be a UUID",
     },
     "property": "requiredUUIDValue",
     "target": Example {},
@@ -470,7 +470,7 @@ Array [
     "children": Array [],
     "constraints": Object {
       "isDefined": "requiredUUIDValue should not be null or undefined",
-      "isUuid": "requiredUUIDValue must be an UUID",
+      "isUuid": "requiredUUIDValue must be a UUID",
     },
     "property": "requiredUUIDValue",
     "target": Example {},
