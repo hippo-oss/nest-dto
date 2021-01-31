@@ -7,7 +7,6 @@ import {
     DateOptions,
     DateStringOptions,
     EnumOptions,
-    Flavor,
     IntegerOptions,
     NestedOptions,
     NumberOptions,
@@ -43,15 +42,13 @@ function createBuilderWithMixins<Options>() {
     );
 }
 
-export const flavor: Flavor = {
-    IsArray: IsArrayRecipe(createBuilderWithMixins<ArrayOptions>()),
-    IsBoolean: IsBooleanRecipe(createBuilderWithMixins<BooleanOptions>()),
-    IsDate: IsDateRecipe(createBuilderWithMixins<DateOptions>()),
-    IsDateString: IsDateStringRecipe(createBuilderWithMixins<DateStringOptions>()),
-    IsEnum: IsEnumRecipe(createBuilderWithMixins<EnumOptions>()),
-    IsInteger: IsIntegerRecipe(createBuilderWithMixins<IntegerOptions>()),
-    IsNested: IsNestedRecipe(createBuilderWithMixins<NestedOptions>()),
-    IsNumber: IsNumberRecipe(createBuilderWithMixins<NumberOptions>()),
-    IsString: IsStringRecipe(createBuilderWithMixins<StringOptions>()),
-    IsUUID: IsUUIDRecipe(createBuilderWithMixins<UUIDOptions>()),
-};
+export const IsArray = IsArrayRecipe(createBuilderWithMixins<ArrayOptions>());
+export const IsBoolean = IsBooleanRecipe(createBuilderWithMixins<BooleanOptions>());
+export const IsDate = IsDateRecipe(createBuilderWithMixins<DateOptions>());
+export const IsDateString = IsDateStringRecipe(createBuilderWithMixins<DateStringOptions>());
+export const IsEnum = IsEnumRecipe(createBuilderWithMixins<EnumOptions>());
+export const IsInteger = IsIntegerRecipe(createBuilderWithMixins<IntegerOptions>());
+export const IsNested = IsNestedRecipe(createBuilderWithMixins<NestedOptions>());
+export const IsNumber = IsNumberRecipe(createBuilderWithMixins<NumberOptions>());
+export const IsString = IsStringRecipe(createBuilderWithMixins<StringOptions>());
+export const IsUUID = IsUUIDRecipe(createBuilderWithMixins<UUIDOptions>());

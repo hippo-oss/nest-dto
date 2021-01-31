@@ -1,0 +1,4 @@
+{
+    "main": "../dist/flavors/basic.js",
+    "types": "../dist/flavors/basic.d.ts"
+}

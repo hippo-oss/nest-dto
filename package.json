@@ -13,9 +13,19 @@
         "Swagger"
     ],
     "private": false,
+    "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist",
+        "*.d.ts",
+        "basic",
+        "openapi"
     ],
+    "exports": {
+        ".": "./dist/index.js",
+        "./basic": "./dist/flavors/basic.js",
+        "./openapi": "./dist/flavors/openapi.js",
+        "./package.json": "./package.json"
+    },
     "scripts": {
         "build": "tsc --build tsconfig.build.json",
         "build:force": "tsc --build tsconfig.build.json --force",
