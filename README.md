@@ -46,12 +46,12 @@ export class ExampleDTO {
 With `nest-dto`, this declaration becomes:
 
 ```ts
-import { openapi } from '@hippo-oss/nest-dto';
+import { IsInteger } from '@hippo-oss/nest-dto/openapi';
 
 
 export class ExampleDTO {
 
-    @openapi.IsInteger({
+    @IsInteger({
         description: 'An example value',
     })
     public value!: number;

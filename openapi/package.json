@@ -1,0 +1,4 @@
+{
+    "main": "../dist/flavors/openapi.js",
+    "types": "../dist/flavors/openapi.d.ts"
+}

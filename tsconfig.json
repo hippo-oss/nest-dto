@@ -11,7 +11,7 @@
         "target": "es2019",
         "sourceMap": true,
         "outDir": "./dist",
-        "rootDir": "./",
+        "rootDir": "./src",
         "incremental": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,

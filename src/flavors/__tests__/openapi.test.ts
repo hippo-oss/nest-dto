@@ -4,11 +4,11 @@ import { Test } from '@nestjs/testing';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { flavor } from '../openapi';
+import * as openapi from '../openapi';
 import { INPUT, createFixtures } from './fixtures';
 
 describe('flavors.openapi', () => {
-    const Example = createFixtures(flavor);
+    const Example = createFixtures(openapi);
 
     /* NB: it's tricky to correctly define the return type of `createFixtures` and
      * we get a "refers to a value, but is being used as a type here" compiler error
