@@ -16,3 +16,11 @@ export function initializeTransformer<Options extends TransformerOptions>(
         ExposePropertyDecorator(options as ExposeOptions),
     ];
 }
+
+export function initializeStrictTransformer<Options extends TransformerOptions>(
+    options: Options,
+): PropertyDecorator[] {
+    return [
+        ExposePropertyDecorator(options as ExposeOptions),
+    ];
+}
