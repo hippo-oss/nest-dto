@@ -1,18 +1,19 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
-import { BuilderClass, StringOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { StringOptions, Initializer } from '../interfaces';
 
-export function IsStringRecipe<Options extends StringOptions>(
-    Builder: BuilderClass,
-): (options?: Options) => PropertyDecorator {
+export function IsStringRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options?: Options & StringOptions) => PropertyDecorator {
     return (
-        options?: Options,
+        options: Options & StringOptions = {} as Options & StringOptions,
     ): PropertyDecorator => new Builder({
-        ...(options || {}),
+        ...options,
 
         // set type to number
         type: 'string',
-    }).add(
+    }, initializers).add(
         // validate data as a string
         IsString(),
 

@@ -1,22 +1,12 @@
 /* Defines a flavor of decorators appropriate for `@nestjs/swagger` declarations.
  */
-import { createBuilder } from '../builder';
-import {
-    ArrayOptions,
-    BooleanOptions,
-    DateOptions,
-    DateStringOptions,
-    EnumOptions,
-    IntegerOptions,
-    NestedOptions,
-    NumberOptions,
-    StringOptions,
-    UUIDOptions,
-} from '../interfaces';
 import {
     initializeSwagger,
     initializeTransformer,
     initializeValidator,
+    SwaggerOptions,
+    TransformerOptions,
+    ValidatorOptions,
 } from '../initializers';
 import {
     IsArrayRecipe,
@@ -31,22 +21,21 @@ import {
     IsUUIDRecipe,
 } from '../recipes';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function createBuilderWithMixins<Options>() {
-    return createBuilder<Options>(
-        initializeSwagger,
-        initializeTransformer,
-        initializeValidator,
-    );
-}
+const initializers = [
+    initializeSwagger,
+    initializeTransformer,
+    initializeValidator,
+];
 
-export const IsArray = IsArrayRecipe(createBuilderWithMixins<ArrayOptions>());
-export const IsBoolean = IsBooleanRecipe(createBuilderWithMixins<BooleanOptions>());
-export const IsDate = IsDateRecipe(createBuilderWithMixins<DateOptions>());
-export const IsDateString = IsDateStringRecipe(createBuilderWithMixins<DateStringOptions>());
-export const IsEnum = IsEnumRecipe(createBuilderWithMixins<EnumOptions>());
-export const IsInteger = IsIntegerRecipe(createBuilderWithMixins<IntegerOptions>());
-export const IsNested = IsNestedRecipe(createBuilderWithMixins<NestedOptions>());
-export const IsNumber = IsNumberRecipe(createBuilderWithMixins<NumberOptions>());
-export const IsString = IsStringRecipe(createBuilderWithMixins<StringOptions>());
-export const IsUUID = IsUUIDRecipe(createBuilderWithMixins<UUIDOptions>());
+type FlavorOptions = SwaggerOptions & TransformerOptions & ValidatorOptions;
+
+export const IsArray = IsArrayRecipe<FlavorOptions>(initializers);
+export const IsBoolean = IsBooleanRecipe<FlavorOptions>(initializers);
+export const IsDate = IsDateRecipe<FlavorOptions>(initializers);
+export const IsDateString = IsDateStringRecipe<FlavorOptions>(initializers);
+export const IsEnum = IsEnumRecipe<FlavorOptions>(initializers);
+export const IsInteger = IsIntegerRecipe<FlavorOptions>(initializers);
+export const IsNested = IsNestedRecipe<FlavorOptions>(initializers);
+export const IsNumber = IsNumberRecipe<FlavorOptions>(initializers);
+export const IsString = IsStringRecipe<FlavorOptions>(initializers);
+export const IsUUID = IsUUIDRecipe<FlavorOptions>(initializers);

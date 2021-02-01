@@ -1,19 +1,20 @@
 import { ValidateNested } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass, NestedOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { Initializer, NestedOptions } from '../interfaces';
 
-export function IsNestedRecipe<Options extends NestedOptions>(
-    Builder: BuilderClass,
-): (options: Options) => PropertyDecorator {
+export function IsNestedRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options: Options & NestedOptions) => PropertyDecorator {
     return (
-        options: Options,
+        options: Options & NestedOptions,
     ): PropertyDecorator => new Builder({
         ...options,
 
         // set type to nested type
         type: options.type,
-    }).add(
+    }, initializers).add(
         // convert to nested type
         TypePropertyDecorator(() => options.type),
 

@@ -1,13 +1,14 @@
 import { IsEnum } from 'class-validator';
 import 'reflect-metadata';
 
-import { BuilderClass, EnumOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { EnumOptions, Initializer } from '../interfaces';
 
-export function IsEnumRecipe<Options extends EnumOptions>(
-    Builder: BuilderClass,
-): (options: Options) => PropertyDecorator {
+export function IsEnumRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options: Options & EnumOptions) => PropertyDecorator {
     return (
-        options: Options,
+        options: Options & EnumOptions,
     ): PropertyDecorator => new Builder({
         ...options,
 
@@ -17,7 +18,7 @@ export function IsEnumRecipe<Options extends EnumOptions>(
          */
         enum: options.enum,
         enumName: options.enumName,
-    }).add(
+    }, initializers).add(
         // validate data as an enum
         IsEnum(options.enum),
     ).build();

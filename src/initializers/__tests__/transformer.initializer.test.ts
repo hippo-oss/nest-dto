@@ -1,11 +1,13 @@
 import { plainToClass } from 'class-transformer';
 
-import { createBuilder } from '../../builder';
+import { Builder } from '../../builder';
 import { TransformerOptions, initializeTransformer } from '../transformer.initializer';
 
-const Builder = createBuilder<TransformerOptions>(initializeTransformer);
-
 describe('initializers', () => {
+    const initializers = [
+        initializeTransformer,
+    ];
+
     describe('initializerTransformer', () => {
         const options = {
             excludeExtraneousValues: true,
@@ -15,8 +17,7 @@ describe('initializers', () => {
         };
 
         it('defaults to not exposed', () => {
-            const builder = new Builder({
-            });
+            const builder = new Builder<TransformerOptions>({}, initializers);
             expect(builder.decorators).toHaveLength(0);
 
             const decorator = builder.build();
@@ -34,9 +35,7 @@ describe('initializers', () => {
             expect(obj.value).not.toBeDefined();
         });
         it('can be set to exposed', () => {
-            const builder = new Builder({
-                expose: true,
-            });
+            const builder = new Builder<TransformerOptions>({ expose: true }, initializers);
             expect(builder.decorators).toHaveLength(1);
 
             const decorator = builder.build();
@@ -54,9 +53,7 @@ describe('initializers', () => {
             expect(obj.value).toEqual('foo');
         });
         it('can be set to not exposed', () => {
-            const builder = new Builder({
-                expose: false,
-            });
+            const builder = new Builder<TransformerOptions>({ expose: false }, initializers);
             expect(builder.decorators).toHaveLength(0);
 
             const decorator = builder.build();

@@ -1,4 +1,4 @@
-import { Builder, BuilderInitializer, Constructor } from './interfaces';
+import { Initializer } from './interfaces';
 
 /* Compose a collection of input decorators into a single decorator.
  */
@@ -11,31 +11,34 @@ export function composePropertyDecorators(decorators: PropertyDecorator[]): Prop
     };
 }
 
-/* A factory function for a builder.
+export function isPropertyDecorator(value: PropertyDecorator | undefined): value is PropertyDecorator {
+    return value !== undefined;
+}
+
+/* A factory for a composed property decorator.
  */
-export function createBuilder<Options>(
-    ...initializers: BuilderInitializer<Options>[]
-): Constructor<Builder> {
+export class Builder<Options> {
+    public decorators: PropertyDecorator[] = [];
 
-    return class BaseBuilder implements Builder {
-        constructor(
-            public readonly options: Options,
-            public decorators: PropertyDecorator[] = [],
-        ) {
-            for (const initializer of initializers) {
-                this.add(...initializer(options));
-            }
+    constructor(
+        public readonly options: Options,
+        initializers: Initializer<Options>[] = [],
+    ) {
+        for (const initializer of initializers) {
+            this.add(
+                ...initializer(options),
+            );
         }
+    }
 
-        public add(...decorators: PropertyDecorator[]): this {
-            this.decorators.push(...decorators.filter(
-                (decorator) => decorator !== undefined,
-            ));
-            return this;
-        }
+    public add(...decorators: (PropertyDecorator | undefined)[]): this {
+        this.decorators.push(
+            ...decorators.filter(isPropertyDecorator),
+        );
+        return this;
+    }
 
-        public build(): PropertyDecorator {
-            return composePropertyDecorators(this.decorators);
-        }
-    };
+    public build(): PropertyDecorator {
+        return composePropertyDecorators(this.decorators);
+    }
 }

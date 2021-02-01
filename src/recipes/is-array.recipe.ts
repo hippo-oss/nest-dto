@@ -1,23 +1,24 @@
 import { ArrayMinSize, ArrayMaxSize, IsArray, ValidateNested } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { ArrayOptions, BuilderClass } from '../interfaces';
+import { Builder } from '../builder';
+import { ArrayOptions, Initializer } from '../interfaces';
 
 export function isObject<T>(value: T): boolean {
     return value !== null && typeof value === 'object';
 }
 
-export function IsArrayRecipe<Options extends ArrayOptions>(
-    Builder: BuilderClass,
-): (options: Options) => PropertyDecorator {
+export function IsArrayRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options: Options & ArrayOptions) => PropertyDecorator {
     return (
-        options: Options,
+        options: Options & ArrayOptions,
     ): PropertyDecorator => new Builder({
         ...options,
 
         // set type to nested type
         type: [options.type],
-    }).add(
+    }, initializers).add(
         // convert to array of nested type
         TypePropertyDecorator(() => options.type),
 

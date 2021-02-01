@@ -1,19 +1,20 @@
 import { IsUUID } from 'class-validator';
 
-import { BuilderClass, UUIDOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { Initializer, UUIDOptions } from '../interfaces';
 
-export function IsUUIDRecipe<Options extends UUIDOptions>(
-    Builder: BuilderClass,
-): (options?: Options) => PropertyDecorator {
+export function IsUUIDRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options?: Options & UUIDOptions) => PropertyDecorator {
     return (
-        options?: Options,
+        options: Options & UUIDOptions = {} as Options & UUIDOptions,
     ): PropertyDecorator => new Builder({
-        ...(options || {}),
+        ...options,
 
         // OpenAPI expresses UUID as a string format
         type: 'string',
         format: 'uuid',
-    }).add(
+    }, initializers).add(
         // validate data as a string
         IsUUID(options?.version),
     ).build();

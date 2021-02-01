@@ -1,19 +1,20 @@
 import { IsBoolean } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass, BooleanOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { BooleanOptions, Initializer } from '../interfaces';
 
-export function IsBooleanRecipe<Options extends BooleanOptions>(
-    Builder: BuilderClass,
-): (options?: Options) => PropertyDecorator {
+export function IsBooleanRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options?: Options & BooleanOptions) => PropertyDecorator {
     return (
-        options?: Options,
+        options: Options & BooleanOptions = {} as Options & BooleanOptions,
     ): PropertyDecorator => new Builder({
-        ...(options || {}),
+        ...options,
 
         // set type to number
         type: 'boolean',
-    }).add(
+    }, initializers).add(
         // convert strings to boolean
         TypePropertyDecorator(() => Boolean),
 

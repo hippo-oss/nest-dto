@@ -1,9 +1,7 @@
 import { getMetadataStorage } from 'class-validator';
 
-import { createBuilder } from '../../builder';
+import { Builder } from '../../builder';
 import { ValidatorOptions, initializeValidator } from '../validator.initializer';
-
-const Builder = createBuilder<ValidatorOptions>(initializeValidator);
 
 // NB: the actual type is not currently exported from `class-validator`
 interface ValidationMetadata {
@@ -11,6 +9,10 @@ interface ValidationMetadata {
 }
 
 describe('initializers', () => {
+    const initializers = [
+        initializeValidator,
+    ];
+
     describe('initializerValidator', () => {
         const metadataStorage = getMetadataStorage();
 
@@ -20,8 +22,7 @@ describe('initializers', () => {
         }
 
         it('defaults to required', () => {
-            const builder = new Builder({
-            });
+            const builder = new Builder<ValidatorOptions>({}, initializers);
             expect(builder.decorators).toHaveLength(1);
 
             const decorator = builder.build();
@@ -36,9 +37,7 @@ describe('initializers', () => {
             expect(metadatas[0].type).toEqual('isDefined');
         });
         it('can be set to optional', () => {
-            const builder = new Builder({
-                optional: true,
-            });
+            const builder = new Builder<ValidatorOptions>({ optional: true }, initializers);
             expect(builder.decorators).toHaveLength(1);
 
             const decorator = builder.build();
@@ -53,9 +52,7 @@ describe('initializers', () => {
             expect(metadatas[0].type).toEqual('conditionalValidation');
         });
         it('can be set to required', () => {
-            const builder = new Builder({
-                optional: false,
-            });
+            const builder = new Builder<ValidatorOptions>({ optional: false }, initializers);
             expect(builder.decorators).toHaveLength(1);
 
             const decorator = builder.build();
