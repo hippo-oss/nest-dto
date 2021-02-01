@@ -20,6 +20,20 @@ creep into the definitions.
 `nest-dto` provides a simplified set of decorators that compose over the library decorators.
 
 
+## Flavors
+
+Different combinations of the library decorators produce different behaviors. `nest-dto` defines
+collections of foundational decorators (e.g. `IsString` or `IsNumber`) in "flavors" that use
+specific combination of these libraries:
+
+ - The `basic` flavor integrates `class-transformer` and `class-validator`
+
+ - The `strict` flavor integrates `class-transformer` and `class-validator` with the expectation
+   that `class-transformer`'s `excludeExtraneousValues` flag will be used.
+
+ - The `openapi` flavor integrates `class-transformer`, `class-validator`, and `@nestjs/swagger`.
+
+
 ## An Example
 
 A DTO for an HTTP API that generates an [OpenAPI spec](https://swagger.io/specification/) might

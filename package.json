@@ -18,12 +18,14 @@
         "dist",
         "*.d.ts",
         "basic",
-        "openapi"
+        "openapi",
+        "strict"
     ],
     "exports": {
         ".": "./dist/index.js",
         "./basic": "./dist/flavors/basic.js",
         "./openapi": "./dist/flavors/openapi.js",
+        "./strict": "./dist/flavors/strict.js",
         "./package.json": "./package.json"
     },
     "scripts": {
