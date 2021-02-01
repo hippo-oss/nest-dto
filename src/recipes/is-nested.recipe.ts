@@ -4,7 +4,7 @@ import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, NestedOptions } from '../interfaces';
 
 export function IsNestedRecipe<Options extends NestedOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options: Options) => PropertyDecorator {
     return (
         options: Options,

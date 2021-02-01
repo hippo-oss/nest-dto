@@ -1,4 +1,4 @@
-import { Builder, Constructor } from './interfaces';
+import { Builder, BuilderInitializer, Constructor } from './interfaces';
 
 /* Compose a collection of input decorators into a single decorator.
  */
@@ -12,18 +12,20 @@ export function composePropertyDecorators(decorators: PropertyDecorator[]): Prop
 }
 
 /* A factory function for a builder.
- *
- * Used as input to a chain of mixins.
- *
- * TypeScript doesn't allow passing a typed class (e.g. `Builder<Options>`) to a mixin,
- * but does allow passing a typed function call that returns a class (e.g. `createBuilder<Options>()`)
  */
-export function createBuilder<Options>(): Constructor<Builder<Options>> {
-    return class BaseBuilder implements Builder<Options> {
+export function createBuilder<Options>(
+    ...initializers: BuilderInitializer<Options>[]
+): Constructor<Builder> {
+
+    return class BaseBuilder implements Builder {
         constructor(
             public readonly options: Options,
             public decorators: PropertyDecorator[] = [],
-        ) {}
+        ) {
+            for (const initializer of initializers) {
+                this.add(...initializer(options));
+            }
+        }
 
         public add(...decorators: PropertyDecorator[]): this {
             this.decorators.push(...decorators.filter(

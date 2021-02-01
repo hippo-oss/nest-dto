@@ -14,9 +14,9 @@ import {
     UUIDOptions,
 } from '../interfaces';
 import {
-    withTransformer,
-    withValidator,
-} from '../mixins';
+    initializeTransformer,
+    initializeValidator,
+} from '../initializers';
 import {
     IsArrayRecipe,
     IsBooleanRecipe,
@@ -32,10 +32,9 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function createBuilderWithMixins<Options>() {
-    return withTransformer(
-        withValidator(
-            createBuilder<Options>(),
-        ),
+    return createBuilder<Options>(
+        initializeTransformer,
+        initializeValidator,
     );
 }
 

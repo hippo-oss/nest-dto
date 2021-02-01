@@ -8,7 +8,7 @@ export function isObject<T>(value: T): boolean {
 }
 
 export function IsArrayRecipe<Options extends ArrayOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options: Options) => PropertyDecorator {
     return (
         options: Options,
