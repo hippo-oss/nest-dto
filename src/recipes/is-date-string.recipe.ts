@@ -5,7 +5,7 @@ import { BuilderClass, DateStringOptions } from '../interfaces';
 const DEFAULT_FORMAT = 'date';
 
 export function IsDateStringRecipe<Options extends DateStringOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options?: Options) => PropertyDecorator {
     return (
         options?: Options,

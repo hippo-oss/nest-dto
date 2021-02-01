@@ -3,7 +3,7 @@ import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 import { BuilderClass, StringOptions } from '../interfaces';
 
 export function IsStringRecipe<Options extends StringOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options?: Options) => PropertyDecorator {
     return (
         options?: Options,

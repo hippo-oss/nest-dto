@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import { BuilderClass, EnumOptions } from '../interfaces';
 
 export function IsEnumRecipe<Options extends EnumOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options: Options) => PropertyDecorator {
     return (
         options: Options,

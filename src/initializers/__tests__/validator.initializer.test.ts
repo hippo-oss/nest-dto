@@ -1,17 +1,17 @@
 import { getMetadataStorage } from 'class-validator';
 
 import { createBuilder } from '../../builder';
-import { ValidatorOptions, withValidator } from '../validator.mixin';
+import { ValidatorOptions, initializeValidator } from '../validator.initializer';
 
-const Builder = withValidator(createBuilder<ValidatorOptions>());
+const Builder = createBuilder<ValidatorOptions>(initializeValidator);
 
 // NB: the actual type is not currently exported from `class-validator`
 interface ValidationMetadata {
     type: string;
 }
 
-describe('mixins', () => {
-    describe('ValidatorMixin', () => {
+describe('initializers', () => {
+    describe('initializerValidator', () => {
         const metadataStorage = getMetadataStorage();
 
         // eslint-disable-next-line @typescript-eslint/ban-types

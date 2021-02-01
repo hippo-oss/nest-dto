@@ -4,7 +4,7 @@ import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, BooleanOptions } from '../interfaces';
 
 export function IsBooleanRecipe<Options extends BooleanOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options?: Options) => PropertyDecorator {
     return (
         options?: Options,

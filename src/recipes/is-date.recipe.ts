@@ -6,7 +6,7 @@ import { BuilderClass, DateOptions } from '../interfaces';
 const DEFAULT_FORMAT = 'date-time';
 
 export function IsDateRecipe<Options extends DateOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options?: Options) => PropertyDecorator {
     return (
         options?: Options,

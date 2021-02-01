@@ -14,10 +14,10 @@ import {
     UUIDOptions,
 } from '../interfaces';
 import {
-    withSwagger,
-    withTransformer,
-    withValidator,
-} from '../mixins';
+    initializeSwagger,
+    initializeTransformer,
+    initializeValidator,
+} from '../initializers';
 import {
     IsArrayRecipe,
     IsBooleanRecipe,
@@ -33,12 +33,10 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function createBuilderWithMixins<Options>() {
-    return withSwagger(
-        withTransformer(
-            withValidator(
-                createBuilder<Options>(),
-            ),
-        ),
+    return createBuilder<Options>(
+        initializeSwagger,
+        initializeTransformer,
+        initializeValidator,
     );
 }
 

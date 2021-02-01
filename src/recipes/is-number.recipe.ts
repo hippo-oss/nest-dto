@@ -4,7 +4,7 @@ import { TypePropertyDecorator } from '../adapters';
 import { BuilderClass, NumberOptions } from '../interfaces';
 
 export function IsNumberRecipe<Options extends NumberOptions>(
-    Builder: BuilderClass<Options>,
+    Builder: BuilderClass,
 ): (options?: Options) => PropertyDecorator {
     return (
         options?: Options,
