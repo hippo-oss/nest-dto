@@ -1,0 +1,4 @@
+{
+    "main": "../dist/flavors/strict.js",
+    "types": "../dist/flavors/strict.d.ts"
+}
