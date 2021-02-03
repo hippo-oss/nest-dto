@@ -1,19 +1,20 @@
 import { IsNumber, Max, Min } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass, NumberOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { Initializer, NumberOptions } from '../interfaces';
 
-export function IsNumberRecipe<Options extends NumberOptions>(
-    Builder: BuilderClass,
-): (options?: Options) => PropertyDecorator {
+export function IsNumberRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options?: Options & NumberOptions) => PropertyDecorator {
     return (
-        options?: Options,
+        options: Options & NumberOptions = {} as Options & NumberOptions,
     ): PropertyDecorator => new Builder({
-        ...(options || {}),
+        ...options,
 
         // set type to number
         type: 'number',
-    }).add(
+    }, initializers).add(
         // convert strings to numbers
         TypePropertyDecorator(() => Number),
 

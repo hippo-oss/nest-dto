@@ -1,22 +1,23 @@
 import { IsDate } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
-import { BuilderClass, DateOptions } from '../interfaces';
+import { Builder } from '../builder';
+import { DateOptions, Initializer } from '../interfaces';
 
 const DEFAULT_FORMAT = 'date-time';
 
-export function IsDateRecipe<Options extends DateOptions>(
-    Builder: BuilderClass,
-): (options?: Options) => PropertyDecorator {
+export function IsDateRecipe<Options>(
+    initializers: Initializer<Options>[],
+): (options?: Options & DateOptions) => PropertyDecorator {
     return (
-        options?: Options,
+        options: Options & DateOptions = {} as Options & DateOptions,
     ): PropertyDecorator => new Builder({
-        ...(options || {}),
+        ...options,
 
         // OpenAPI expresses dates as a string format (either 'date' or 'date-time')
         type: 'string',
         format: options?.format || DEFAULT_FORMAT,
-    }).add(
+    }, initializers).add(
         // TODO: validate the input string before transforming to a Date object
 
         // convert strings to Dates
