@@ -20,20 +20,6 @@ creep into the definitions.
 `nest-dto` provides a simplified set of decorators that compose over the library decorators.
 
 
-## Flavors
-
-Different combinations of the library decorators produce different behaviors. `nest-dto` defines
-collections of foundational decorators (e.g. `IsString` or `IsNumber`) in "flavors" that use
-specific combination of these libraries:
-
- - The `basic` flavor integrates `class-transformer` and `class-validator`
-
- - The `strict` flavor integrates `class-transformer` and `class-validator` with the expectation
-   that `class-transformer`'s `excludeExtraneousValues` flag will be used.
-
- - The `openapi` flavor integrates `class-transformer`, `class-validator`, and `@nestjs/swagger`.
-
-
 ## An Example
 
 A DTO for an HTTP API that generates an [OpenAPI spec](https://swagger.io/specification/) might
@@ -71,3 +57,96 @@ export class ExampleDTO {
     public value!: number;
 }
 ```
+
+## Flavors
+
+Different combinations of the library decorators produce different behaviors. `nest-dto` defines
+collections of foundational decorators (e.g. `IsString` or `IsNumber`) in "flavors" that use
+specific combination of these libraries.
+
+| Flavor    | Description                                                                      |
+| --------- | -------------------------------------------------------------------------------- |
+| `basic`   | Integrates `class-transformer` and `class-validator`                             |
+| `strict`  | Integrates `class-transformer` and `class-validator` and always uses `@Expose()` |
+| `openapi` | Integrates `class-transformer`, `class-validator`, and `@nestjs/swagger`         |
+
+
+## Decorators
+
+The following decorators are supported:
+
+| Decorator      | Description                         |
+| -------------- | ----------------------------------- |
+| `IsArray`      | Declares an array of a nested type. |
+| `IsBoolean`    | Declares a boolean value.           |
+| `IsDate`       | Declares a `Date` value.            |
+| `IsDateString` | Declares an ISO 8601 date string.   |
+| `IsEnum`       | Declares an enumerated value.       |
+| `IsInteger`    | Declares an integer number.         |
+| `IsNested`     | Declares a nested object type.      |
+| `IsNumber`     | Declares a floating point number.   |
+| `IsString`     | Declares a string.                  |
+| `IsUUID`       | Declares a UUID string.             |
+
+### Decorator Options
+
+Decorators may be passed various options, dependening on their type.
+
+All options are optional expect where indicated.
+
+| Option            | Decorator      | Description                                         |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `description`     | *all*          | Description of the field; exposed in OpenAPI.       |
+| `nullable`        | *all*          | Whether the field can be set to `null`.             |
+| `optional`        | *all*          | Whether the field be set to `undefined` or omitted. |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `type` (required) | `IsArray`      | The type of the array's items.                      |
+| `maxItems`        | `IsArray`      | The maximum number of array items.                  |
+| `minItems`        | `IsArray`      | The minimum number of array items.                  |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `format`          | `IsDate`       | The OpenaPI date format; defaults to `date-time`.   |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `format`          | `IsDateString` | The OpenAPI date format; defaults to `date`.        |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `enum` (required) | `IsEnum`       | The enum type.                                      |
+| `enumName`        | `IsEnum`       | The enum name; required to correctly export OpenAPI |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `maxValue`        | `IsInteger`    | The maximum value of the field.                     |
+| `minValue`        | `IsInteger`    | The minimum value of the field.                     |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `type` (required) | `IsNested`     | The nested type.                                    |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `maxValue`        | `IsNumber`     | The maximum value of the field.                     |
+| `minValue`        | `IsNumber`     | The minimum value of the field.                     |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `maxLength`       | `IsString`     | The maximum length of the string.                   |
+| `minLength`       | `IsString`     | The minimum length of the string.                   |
+| `pattern`         | `IsString`     | A regex pattern for validating the string.          |
+| ----------------- | -------------- | --------------------------------------------------- |
+| `version`         | `IsUUID`       | The type of UUID.                                   |
+
+### Enums
+
+Enumerated types work pretty much as expected:
+
+```ts
+enum Color {
+  Red = 'Red',
+  Blue = 'Blue',
+  Green = 'Green',
+}
+
+class Example {
+   @IsEnum({
+      enum: Color,
+      enumName: 'Color',
+   })
+   color!: Color;
+}
+```
+
+The `enumName` value is optional, but if omitted causes OpenAPI generation to treat the enum
+as a value type rather than as `$ref` to a shared type. This choice may matters when generating
+code from an OpenAPI spec because most code generators will produce different types for every
+enum value, even if they share the same enumerated values. Defining an `enumName` (and therefore
+a `$ref` declaration) ensures that generated code sees each use of the same enum as the same type.
