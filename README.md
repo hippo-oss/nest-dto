@@ -97,6 +97,7 @@ All options are optional expect where indicated.
 | Option            | Decorator      | Description                                         |
 | ----------------- | -------------- | --------------------------------------------------- |
 | `description`     | *all*          | Description of the field; exposed in OpenAPI.       |
+| `isArray`         | *all*          | Designates and array of values.                     |
 | `nullable`        | *all*          | Whether the field can be set to `null`.             |
 | `optional`        | *all*          | Whether the field be set to `undefined` or omitted. |
 | ----------------- | -------------- | --------------------------------------------------- |
@@ -125,6 +126,39 @@ All options are optional expect where indicated.
 | ----------------- | -------------- | --------------------------------------------------- |
 | `version`         | `IsUUID`       | The type of UUID.                                   |
 
+
+### Arrays
+
+The easiest (and preferred) way to define arrays is to add the `isArray` argument to
+another decorator:
+
+```ts
+class Example {
+   @IsString({
+       isArray: true,
+   })
+   values!: string[];
+}
+```
+
+The `isArray` option may be supplied as either the literal `true` or as `ArraySizeOptions`:
+
+```ts
+class Example {
+   @IsString({
+       isArray: {
+           maxSize: 30,
+           minSize: 0,
+       },
+   })
+   values!: string[];
+}
+```
+
+Note that while the `IsArray` decorator is also supported, it is less well-suited for defining
+arrays of value types using a consistent interface and may be deprecated in the future.
+
+
 ### Enums
 
 Enumerated types work pretty much as expected:
@@ -150,3 +184,25 @@ as a value type rather than as `$ref` to a shared type. This choice may matters 
 code from an OpenAPI spec because most code generators will produce different types for every
 enum value, even if they share the same enumerated values. Defining an `enumName` (and therefore
 a `$ref` declaration) ensures that generated code sees each use of the same enum as the same type.
+
+
+### Nested Types
+
+Decorator values that use another object type should be decorated with `IsNested`:
+
+```ts
+class Child {
+    @IsString()
+    value!: string;
+}
+
+class Parent {
+     @IsNested({
+         type: Child,
+     })
+     child!: Child;
+}
+```
+
+Every child type is expected to define *at least one* decorator field. Failure to do so may result
+in errors from `class-transformer`.
