@@ -1,36 +1,16 @@
-import { ArrayMinSize, ArrayMaxSize, IsArray, ValidateNested } from 'class-validator';
+import { ValidateNested } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
-import { ArrayOptions, ArraySizeOptions, Initializer } from '../interfaces';
+import { Initializer } from '../interfaces';
+import { ArrayOptions } from '../options';
+import {
+    buildArrayPropertyDecorators,
+    buildValidatePropertyDecorator,
+} from './common.recipe';
 
 export function isObject<T>(value: T): boolean {
     return value !== null && typeof value === 'object';
-}
-
-export function buildArrayPropertyDecorators(
-    options?: boolean | ArraySizeOptions,
-): PropertyDecorator[] {
-    const decorators: PropertyDecorator[] = [];
-
-    if (!options) {
-        return decorators;
-    }
-
-    // validate data as array
-    decorators.push(IsArray());
-
-    // maybe: add a maximum size
-    if (options !== true && options.maxItems !== undefined) {
-        decorators.push(ArrayMaxSize(options.maxItems));
-    }
-
-    // maybe: add a minimum size
-    if (options !== true && options.minItems !== undefined) {
-        decorators.push(ArrayMinSize(options.minItems));
-    }
-
-    return decorators;
 }
 
 export function IsArrayRecipe<Options>(
@@ -48,6 +28,8 @@ export function IsArrayRecipe<Options>(
         TypePropertyDecorator(() => options.type),
 
         ...buildArrayPropertyDecorators(options),
+
+        buildValidatePropertyDecorator(options.validate),
 
         // maybe: validate nested type
         isObject(options.type) ? ValidateNested() : undefined,

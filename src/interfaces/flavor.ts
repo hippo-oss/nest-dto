@@ -9,7 +9,7 @@ import {
     NumberOptions,
     StringOptions,
     UUIDOptions,
-} from './options';
+} from '../options';
 
 /* A collection of decorator recipes using a specific options type.
  */

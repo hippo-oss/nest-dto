@@ -1,8 +1,9 @@
 import { IsUUID } from 'class-validator';
 
 import { Builder } from '../builder';
-import { Initializer, UUIDOptions } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { UUIDOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsUUIDRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -16,7 +17,7 @@ export function IsUUIDRecipe<Options>(
         type: 'string',
         format: 'uuid',
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // validate data as a string
         IsUUID(options?.version, { each: !!options.isArray }),

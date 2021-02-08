@@ -1,8 +1,9 @@
 import { IsISO8601 } from 'class-validator';
 
 import { Builder } from '../builder';
-import { DateStringOptions, Initializer } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { DateStringOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 const DEFAULT_FORMAT = 'date';
 
@@ -18,7 +19,7 @@ export function IsDateStringRecipe<Options>(
         type: 'string',
         format: options?.format || DEFAULT_FORMAT,
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // validate data as a DateString
         IsISO8601({}, { each: !!options.isArray }),

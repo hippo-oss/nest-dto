@@ -2,8 +2,9 @@ import { IsNumber, Max, Min } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
-import { Initializer, NumberOptions } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { NumberOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsNumberRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -16,7 +17,7 @@ export function IsNumberRecipe<Options>(
         // set type to number
         type: 'number',
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // convert strings to numbers
         TypePropertyDecorator(() => Number),

@@ -14,7 +14,7 @@ describe('flavors.openapi', () => {
      * we get a "refers to a value, but is being used as a type here" compiler error
      * if we use it directly.
      *
-     * Fortunately, we can define the return type as a `Constructor` and use a subclass,
+     * Fortunately, we can define the return type as a `Type` and use a subclass,
      * which satisfied the compiler.
      */
     class ExampleDTO extends Example {}
