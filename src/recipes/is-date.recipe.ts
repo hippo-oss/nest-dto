@@ -3,6 +3,7 @@ import { IsDate } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
 import { DateOptions, Initializer } from '../interfaces';
+import { buildArrayPropertyDecorators } from './is-array.recipe';
 
 const DEFAULT_FORMAT = 'date-time';
 
@@ -18,12 +19,14 @@ export function IsDateRecipe<Options>(
         type: 'string',
         format: options?.format || DEFAULT_FORMAT,
     }, initializers).add(
-        // TODO: validate the input string before transforming to a Date object
+        ...buildArrayPropertyDecorators(options.isArray),
+
+        // should we validate the input string before transforming to a Date object?
 
         // convert strings to Dates
         TypePropertyDecorator(() => Date),
 
         // validate data as a Date
-        IsDate(),
+        IsDate({ each: !!options.isArray }),
     ).build();
 }

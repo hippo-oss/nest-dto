@@ -3,6 +3,7 @@ import { IsBoolean } from 'class-validator';
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
 import { BooleanOptions, Initializer } from '../interfaces';
+import { buildArrayPropertyDecorators } from './is-array.recipe';
 
 export function IsBooleanRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -15,10 +16,12 @@ export function IsBooleanRecipe<Options>(
         // set type to number
         type: 'boolean',
     }, initializers).add(
+        ...buildArrayPropertyDecorators(options.isArray),
+
         // convert strings to boolean
         TypePropertyDecorator(() => Boolean),
 
         // validate data as a boolean
-        IsBoolean(),
+        IsBoolean({ each: !!options.isArray }),
     ).build();
 }

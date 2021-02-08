@@ -2,6 +2,7 @@ import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 import { Builder } from '../builder';
 import { StringOptions, Initializer } from '../interfaces';
+import { buildArrayPropertyDecorators } from './is-array.recipe';
 
 export function IsStringRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -14,16 +15,18 @@ export function IsStringRecipe<Options>(
         // set type to number
         type: 'string',
     }, initializers).add(
+        ...buildArrayPropertyDecorators(options.isArray),
+
         // validate data as a string
-        IsString(),
+        IsString({ each: !!options.isArray }),
 
         // maybe: add a maximum length
-        options?.maxLength !== undefined ? MaxLength(options.maxLength) : undefined,
+        options?.maxLength !== undefined ? MaxLength(options.maxLength, { each: !!options.isArray }) : undefined,
 
         // maybe: add a minimum length
-        options?.minLength !== undefined ? MinLength(options.minLength) : undefined,
+        options?.minLength !== undefined ? MinLength(options.minLength, { each: !!options.isArray }) : undefined,
 
         // maybe: add a regex
-        options?.pattern !== undefined ? Matches(options.pattern) : undefined,
+        options?.pattern !== undefined ? Matches(options.pattern, { each: !!options.isArray }) : undefined,
     ).build();
 }

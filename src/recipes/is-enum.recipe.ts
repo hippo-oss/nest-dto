@@ -3,6 +3,7 @@ import 'reflect-metadata';
 
 import { Builder } from '../builder';
 import { EnumOptions, Initializer } from '../interfaces';
+import { buildArrayPropertyDecorators } from './is-array.recipe';
 
 export function IsEnumRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -19,7 +20,9 @@ export function IsEnumRecipe<Options>(
         enum: options.enum,
         enumName: options.enumName,
     }, initializers).add(
+        ...buildArrayPropertyDecorators(options.isArray),
+
         // validate data as an enum
-        IsEnum(options.enum),
+        IsEnum(options.enum, { each: !!options.isArray }),
     ).build();
 }
