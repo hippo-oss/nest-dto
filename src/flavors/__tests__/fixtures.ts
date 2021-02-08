@@ -1,6 +1,10 @@
-import { Constructor, Flavor } from '../../interfaces';
+import { Type } from '@nestjs/common';
+import { Flavor } from '../../interfaces';
 
-export function createFixtures(flavor: Flavor): Constructor {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Fixture = Type<{}>;
+
+export function createFixtures(flavor: Flavor): Fixture {
     const {
         IsArray,
         IsBoolean,

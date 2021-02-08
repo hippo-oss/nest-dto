@@ -1,6 +1,7 @@
+import { Type } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { ArraySizeOptions, Constructor } from '../interfaces';
+import { ArraySizeOptions } from '../options';
 
 export interface SwaggerOptions {
     description?: string;
@@ -16,7 +17,7 @@ export interface SwaggerOptions {
     minItems?: number,
     minValue?: number,
     optional?: boolean,
-    type?: string | Constructor | Constructor[],
+    type?: string | Type | Type[],
 }
 
 export function normalizeArraySizeOptions<Options extends SwaggerOptions>(

@@ -2,8 +2,9 @@ import { IsBoolean } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
-import { BooleanOptions, Initializer } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { BooleanOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsBooleanRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -16,7 +17,7 @@ export function IsBooleanRecipe<Options>(
         // set type to number
         type: 'boolean',
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // convert strings to boolean
         TypePropertyDecorator(() => Boolean),

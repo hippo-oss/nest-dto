@@ -1,8 +1,9 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 import { Builder } from '../builder';
-import { StringOptions, Initializer } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { StringOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsStringRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -15,7 +16,7 @@ export function IsStringRecipe<Options>(
         // set type to number
         type: 'string',
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // validate data as a string
         IsString({ each: !!options.isArray }),

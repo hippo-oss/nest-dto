@@ -2,8 +2,9 @@ import { IsInt, Max, Min } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
-import { Initializer, IntegerOptions } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { IntegerOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsIntegerRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -16,7 +17,7 @@ export function IsIntegerRecipe<Options>(
         // set type to number
         type: 'integer',
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // convert strings to numbers
         TypePropertyDecorator(() => Number),

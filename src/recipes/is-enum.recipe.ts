@@ -2,8 +2,9 @@ import { IsEnum } from 'class-validator';
 import 'reflect-metadata';
 
 import { Builder } from '../builder';
-import { EnumOptions, Initializer } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { EnumOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsEnumRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -20,7 +21,7 @@ export function IsEnumRecipe<Options>(
         enum: options.enum,
         enumName: options.enumName,
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // validate data as an enum
         IsEnum(options.enum, { each: !!options.isArray }),

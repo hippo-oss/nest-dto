@@ -2,8 +2,9 @@ import { ValidateNested } from 'class-validator';
 
 import { TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
-import { Initializer, NestedOptions } from '../interfaces';
-import { buildArrayPropertyDecorators } from './is-array.recipe';
+import { Initializer } from '../interfaces';
+import { NestedOptions } from '../options';
+import { buildCommonPropertyDecorators } from './common.recipe';
 
 export function IsNestedRecipe<Options>(
     initializers: Initializer<Options>[],
@@ -16,7 +17,7 @@ export function IsNestedRecipe<Options>(
         // set type to nested type
         type: options.type,
     }, initializers).add(
-        ...buildArrayPropertyDecorators(options.isArray),
+        ...buildCommonPropertyDecorators(options),
 
         // convert to nested type
         TypePropertyDecorator(() => options.type),
