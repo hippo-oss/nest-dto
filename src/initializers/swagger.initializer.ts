@@ -7,6 +7,7 @@ export interface SwaggerOptions {
     description?: string;
     enum?: Record<string, unknown>,
     enumName?: string;
+    example?: string;
     format?: string;
     isArray?: boolean | ArraySizeOptions,
     nullable?: boolean;
@@ -43,6 +44,7 @@ export function initializeSwagger<Options extends SwaggerOptions>(
         ApiProperty({
             enum: options.enum,
             enumName: options.enumName,
+            example: options.example,
             description: options.description,
             format: options.format,
             isArray: !!options.isArray,
