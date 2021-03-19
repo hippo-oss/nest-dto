@@ -1,6 +1,6 @@
 {
     "name": "@hippo-oss/nest-dto",
-    "version": "0.9.1",
+    "version": "0.9.2",
     "description": "NestJS DTO decorators.",
     "main": "./dist/index.js",
     "repository": "https://github.com/hippo-oss/nest-dto",
