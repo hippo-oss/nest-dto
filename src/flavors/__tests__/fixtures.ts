@@ -225,7 +225,7 @@ export const INPUT = {
     requiredPrimitiveArrayValue: [
         '42',
     ],
-    falseBooleanValue: 'false',
+    falseBooleanValue: 'False',
     zeroBooleanValue: '0',
     requiredBooleanValue: 'true',
     requiredDateStringValue: '2021-01-12',
