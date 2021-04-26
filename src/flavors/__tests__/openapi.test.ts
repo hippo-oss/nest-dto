@@ -41,15 +41,18 @@ describe('flavors.openapi', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(11);
+        expect(errors).toHaveLength(13);
         expect(errors).toMatchSnapshot();
     });
     it('transforms input data', async () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(33);
+        expect(Object.keys(obj)).toHaveLength(35);
         expect(obj).toMatchObject({
+            falseBooleanValue: false,
+            zeroBooleanValue: false,
+            requiredBooleanValue: true,
             requiredObjectArrayValue: [{
                 requiredStringValue: 'nested',
             }],
@@ -94,7 +97,7 @@ describe('flavors.openapi', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(11);
+        expect(errors).toHaveLength(13);
         expect(errors).toMatchSnapshot();
     });
     it('generates OpenAPI spec', async () => {

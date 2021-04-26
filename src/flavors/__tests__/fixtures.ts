@@ -51,6 +51,12 @@ export function createFixtures(flavor: Flavor): Fixture {
         requiredPrimitiveArrayValue!: number[];
 
         @IsBoolean()
+        falseBooleanValue!: boolean;
+
+        @IsBoolean()
+        zeroBooleanValue!: boolean;
+
+        @IsBoolean()
         requiredBooleanValue!: boolean;
 
         @IsDateString()
@@ -219,6 +225,8 @@ export const INPUT = {
     requiredPrimitiveArrayValue: [
         '42',
     ],
+    falseBooleanValue: 'false',
+    zeroBooleanValue: '0',
     requiredBooleanValue: 'true',
     requiredDateStringValue: '2021-01-12',
     requiredDateValue: '2021-01-12T01:12:38.956Z',

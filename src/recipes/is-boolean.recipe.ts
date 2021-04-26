@@ -1,6 +1,7 @@
 import { IsBoolean } from 'class-validator';
 
-import { TypePropertyDecorator } from '../adapters';
+import { TransformFnParams } from 'class-transformer';
+import { TransformPropertyDecorator, TypePropertyDecorator } from '../adapters';
 import { Builder } from '../builder';
 import { Initializer } from '../interfaces';
 import { BooleanOptions } from '../options';
@@ -21,6 +22,16 @@ export function IsBooleanRecipe<Options>(
 
         // convert strings to boolean
         TypePropertyDecorator(() => Boolean),
+
+        // convert 'false' and '0' to false
+        TransformPropertyDecorator(({ obj, key, value }: TransformFnParams) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            if (obj[key] === 'false' || obj[key] === '0') {
+                return false;
+            }
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+            return value;
+        }),
 
         // validate data as a boolean
         IsBoolean({ each: !!options.isArray }),

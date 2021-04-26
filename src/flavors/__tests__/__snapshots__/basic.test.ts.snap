@@ -25,6 +25,26 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
+      "isBoolean": "falseBooleanValue must be a boolean value",
+      "isDefined": "falseBooleanValue should not be null or undefined",
+    },
+    "property": "falseBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isBoolean": "zeroBooleanValue must be a boolean value",
+      "isDefined": "zeroBooleanValue should not be null or undefined",
+    },
+    "property": "zeroBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
       "isBoolean": "requiredBooleanValue must be a boolean value",
       "isDefined": "requiredBooleanValue should not be null or undefined",
     },
@@ -137,6 +157,26 @@ Array [
       "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
     },
     "property": "requiredPrimitiveArrayValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isBoolean": "falseBooleanValue must be a boolean value",
+      "isDefined": "falseBooleanValue should not be null or undefined",
+    },
+    "property": "falseBooleanValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isBoolean": "zeroBooleanValue must be a boolean value",
+      "isDefined": "zeroBooleanValue should not be null or undefined",
+    },
+    "property": "zeroBooleanValue",
     "target": Example {},
     "value": undefined,
   },
