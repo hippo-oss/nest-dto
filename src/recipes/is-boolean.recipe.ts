@@ -26,7 +26,7 @@ export function IsBooleanRecipe<Options>(
         // convert 'false' and '0' to false
         TransformPropertyDecorator(({ obj, key, value }: TransformFnParams) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            if ('false'.localeCompare(obj[key], undefined, { sensitivity: 'accent' }) === 0 || obj[key] === '0') {
+            if ('false'.localeCompare(obj[key], undefined, { sensitivity: 'base' }) === 0 || obj[key] === '0') {
                 return false;
             }
             // eslint-disable-next-line @typescript-eslint/no-unsafe-return
