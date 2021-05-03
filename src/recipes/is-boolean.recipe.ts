@@ -24,13 +24,25 @@ export function IsBooleanRecipe<Options>(
         TypePropertyDecorator(() => Boolean),
 
         // convert 'false' and '0' to false
-        TransformPropertyDecorator(({ obj, key, value }: TransformFnParams) => {
+        TransformPropertyDecorator(({ obj, key, value }: TransformFnParams): unknown => {
+            /* NB: by the time this function is called, the @Type() decorator will have already converted
+             * the orginal value to boolean, so we must recover the original value; in additional, decorator
+             * order has no impact on this behavior because class-transformer saves decorator logic as
+             * reflect-metadata and evaluates it using its own ordering logic.
+             */
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            if ('false'.localeCompare(obj[key], undefined, { sensitivity: 'base' }) === 0 || obj[key] === '0') {
-                return false;
+            const originalValue = obj[key] as unknown;
+
+            if (typeof originalValue === 'string') {
+                if (originalValue === '0') {
+                    return false;
+                }
+                if ('false'.localeCompare(originalValue, undefined, { sensitivity: 'base' }) === 0) {
+                    return false;
+                }
             }
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-            return value;
+
+            return value as unknown;
         }),
 
         // validate data as a boolean
