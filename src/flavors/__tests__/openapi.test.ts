@@ -36,7 +36,7 @@ describe('flavors.openapi', () => {
         const obj = plainToClass(Example, {});
 
         // we expect the data to be transformed
-        expect(Object.keys(obj).length > 0).toEqual(true);
+        expect(Object.keys(obj).length).toBeGreaterThan(0);
         expect(obj).toMatchSnapshot();
 
         const errors = await validate(obj);
