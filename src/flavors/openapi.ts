@@ -2,7 +2,7 @@
  */
 import {
     initializeSwagger,
-    initializeTransformer,
+    initializeStrictTransformer,
     initializeValidator,
     SwaggerOptions,
     TransformerOptions,
@@ -23,7 +23,7 @@ import {
 
 const initializers = [
     initializeSwagger,
-    initializeTransformer,
+    initializeStrictTransformer,
     initializeValidator,
 ];
 
