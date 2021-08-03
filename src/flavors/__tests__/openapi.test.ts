@@ -35,8 +35,8 @@ describe('flavors.openapi', () => {
     it('validates required fields', async () => {
         const obj = plainToClass(Example, {});
 
-        // we do not expect any data to be transformed
-        expect(Object.keys(obj)).toHaveLength(0);
+        // we expect the data to be transformed
+        expect(Object.keys(obj).length).toBeGreaterThan(0);
         expect(obj).toMatchSnapshot();
 
         const errors = await validate(obj);
@@ -85,19 +85,6 @@ describe('flavors.openapi', () => {
         const errors = await validate(obj);
         // we expect no errors
         expect(errors).toHaveLength(0);
-        expect(errors).toMatchSnapshot();
-    });
-    it('does not transform input data if extraneous values are excluded', async () => {
-        const obj = plainToClass(Example, INPUT, {
-            excludeExtraneousValues: true,
-        });
-
-        // expect no data to be transformed (b/c @Expose() is not included)
-        expect(Object.keys(obj)).toHaveLength(0);
-
-        const errors = await validate(obj);
-        // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(13);
         expect(errors).toMatchSnapshot();
     });
     it('generates OpenAPI spec', async () => {
