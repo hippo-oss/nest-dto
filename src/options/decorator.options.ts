@@ -8,6 +8,7 @@ export interface ArraySizeOptions {
 
 export interface DecoratorOptions {
     description?: string,
+    example?: unknown,
     isArray?: boolean | ArraySizeOptions,
     nullable?: boolean,
     optional?: boolean,

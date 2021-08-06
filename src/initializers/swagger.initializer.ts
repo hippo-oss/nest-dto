@@ -5,20 +5,20 @@ import { ArraySizeOptions } from '../options';
 
 export interface SwaggerOptions {
     description?: string;
-    enum?: Record<string, unknown>,
+    example?: unknown;
+    enum?: Record<string, unknown>;
     enumName?: string;
-    example?: string;
     format?: string;
-    isArray?: boolean | ArraySizeOptions,
+    isArray?: boolean | ArraySizeOptions;
     nullable?: boolean;
-    maxLength?: number,
-    maxItems?: number,
-    maxValue?: number,
-    minLength?: number,
-    minItems?: number,
-    minValue?: number,
-    optional?: boolean,
-    type?: string | Type | Type[],
+    maxLength?: number;
+    maxItems?: number;
+    maxValue?: number;
+    minLength?: number;
+    minItems?: number;
+    minValue?: number;
+    optional?: boolean;
+    type?: string | Type | Type[];
 }
 
 export function normalizeArraySizeOptions<Options extends SwaggerOptions>(
