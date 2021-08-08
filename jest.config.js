@@ -16,6 +16,6 @@ module.exports = {
     testRegex: '/__tests__/.*test\\.ts$',
     testTimeout: 1000,
     transform: {
-        '^.+\\.ts$': ['ts-jest', { compiler: 'ttypescript' }],
+        '^.+\\.ts$': ['ts-jest'],
     },
 };
