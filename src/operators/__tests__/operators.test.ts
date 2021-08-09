@@ -1,4 +1,5 @@
 import { plainToClass } from 'class-transformer';
+import { validate } from 'class-validator';
 
 import { IsString } from '../../flavors/openapi';
 import {
@@ -53,6 +54,18 @@ describe('class.operators', () => {
                 bar: 'bar',
             });
         });
+        it('picks a subset of fields to validate', async () => {
+            const plain = {
+                bar: 'bar',
+                baz: 'baz',
+            };
+
+            const fooErrors = await validate(plainToClass(Foo, plain));
+            expect(fooErrors).toHaveLength(0);
+
+            const barErrors = await validate(plainToClass(Bar, plain));
+            expect(barErrors).toHaveLength(0);
+        });
     });
     describe('pick', () => {
         const Bar = pick(Foo, 'Bar', ['baz']);
@@ -84,6 +97,18 @@ describe('class.operators', () => {
             expect(plainToClass(Bar, plain)).toEqual({
                 baz: 'baz',
             });
+        });
+        it('picks a subset of fields to validate', async () => {
+            const plain = {
+                bar: 'bar',
+                baz: 'baz',
+            };
+
+            const fooErrors = await validate(plainToClass(Foo, plain));
+            expect(fooErrors).toHaveLength(0);
+
+            const barErrors = await validate(plainToClass(Bar, plain));
+            expect(barErrors).toHaveLength(0);
         });
     });
 });

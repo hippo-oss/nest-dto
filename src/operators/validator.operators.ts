@@ -1,15 +1,48 @@
-import 'reflect-metadata';
 import { Type } from '@nestjs/common';
+import { IsOptional, getMetadataStorage } from 'class-validator';
+
+/* Return the decorator properties of the given class.
+ */
+function propertiesForClass<T>(cls: Type<T>): string[] {
+    const metadata = getMetadataStorage();
+
+    const targetConstructor = cls;
+    // The underlying Validator passes `undefined` even though the schema is typed as `string`.
+    // See: https://github.com/typestack/class-validator/blob/develop/src/validation/Validator.ts#L100
+    const targetSchema = undefined as unknown as string;
+    const always = false;
+    const strictGroups = false;
+    const groups: string[] = [];
+
+    const validators = metadata.getTargetValidationMetadatas(
+        targetConstructor,
+        targetSchema,
+        always,
+        strictGroups,
+        groups,
+    );
+
+    return validators.map(
+        ({ propertyName }) => propertyName,
+    );
+}
 
 /* Narrow class-validator properties by picking the provided fields.
  */
 export function omitValidatorProperties<T, F extends keyof T>(
     cls: Type<T>,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _fields: F[],
+    fields: F[],
 ): Type<T> {
 
-    // TODO
+    const decorator = IsOptional();
+
+    /// decorate each omitted field as `@IsOptional()`
+    for (const field of fields) {
+        if (typeof field === 'string') {
+            decorator(cls.prototype, field);
+        }
+    }
+
     return cls;
 }
 
@@ -17,10 +50,17 @@ export function omitValidatorProperties<T, F extends keyof T>(
  */
 export function pickValidatorProperties<T, F extends keyof T>(
     cls: Type<T>,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _fields: F[],
+    fields: F[],
 ): Type<T> {
 
-    // TODO
+    const decorator = IsOptional();
+
+    // decorate each non-picked field as `@IsOptional()`
+    for (const field of propertiesForClass(cls)) {
+        if (!fields.includes(field as F)) {
+            decorator(cls.prototype, field);
+        }
+    }
+
     return cls;
 }
