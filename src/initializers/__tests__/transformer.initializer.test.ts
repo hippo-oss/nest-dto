@@ -70,5 +70,23 @@ describe('initializers', () => {
             const obj = plainToClass(Fixture, plain, options);
             expect(obj.value).not.toBeDefined();
         });
+        it('transform null to undefinded', () => {
+            const builder = new Builder<TransformerOptions>({
+                expose: true,
+                optional: true,
+                nullable: false,
+            }, initializers);
+            expect(builder.decorators).toHaveLength(2);
+
+            const decorator = builder.build();
+
+            class Fixture {
+                @decorator
+                public value?: string;
+            }
+
+            const obj = plainToClass(Fixture, { value: null }, options);
+            expect(obj.value).not.toBeDefined();
+        });
     });
 });
