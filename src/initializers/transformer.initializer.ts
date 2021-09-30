@@ -5,6 +5,7 @@ import { nullToUndefined } from '../operators';
 
 export interface TransformerOptions {
     expose?: boolean;
+    name?: string;
     nullable?: boolean,
     optional?: boolean,
 }

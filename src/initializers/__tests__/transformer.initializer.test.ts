@@ -1,4 +1,4 @@
-import { plainToClass } from 'class-transformer';
+import { classToPlain, plainToClass } from 'class-transformer';
 
 import { Builder } from '../../builder';
 import { TransformerOptions, initializeTransformer } from '../transformer.initializer';
@@ -87,6 +87,26 @@ describe('initializers', () => {
 
             const obj = plainToClass(Fixture, { value: null }, options);
             expect(obj.value).not.toBeDefined();
+        });
+        it('supports renaming fields', () => {
+            const builder = new Builder<TransformerOptions>({
+                expose: true,
+                name: 'foo_bar',
+            }, initializers);
+            expect(builder.decorators).toHaveLength(1);
+
+            const decorator = builder.build();
+
+            class Fixture {
+                @decorator
+                public fooBar!: string;
+            }
+
+            const obj = plainToClass(Fixture, { foo_bar: 'baz' }, options);
+            expect(obj.fooBar).toEqual('baz');
+            expect(classToPlain(obj)).toEqual({
+                foo_bar: 'baz',
+            });
         });
     });
 });
