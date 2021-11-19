@@ -211,6 +211,11 @@ export function createFixtures(flavor: Flavor): Fixture {
             nullable: true,
         })
         nullableUUIDValue!: string | null;
+
+        @IsString({
+            name: 'string_value_with_different_wire_name',
+        })
+        stringValueWithDifferentWireName!: string;
     }
 
     return Example;
@@ -278,4 +283,5 @@ export const INPUT = {
     nullableNumberValue: '42.0',
     nullableStringValue: 'value',
     nullableUUIDValue: '3430cef4-6e7a-43da-a5a7-ae4c6a18be47',
+    string_value_with_different_wire_name: 'value',
 };

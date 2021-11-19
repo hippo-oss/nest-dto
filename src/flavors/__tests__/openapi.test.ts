@@ -15,7 +15,7 @@ describe('flavors.openapi', () => {
      * if we use it directly.
      *
      * Fortunately, we can define the return type as a `Type` and use a subclass,
-     * which satisfied the compiler.
+     * which satisfies the compiler.
      */
     class ExampleDTO extends Example {}
 
@@ -41,14 +41,14 @@ describe('flavors.openapi', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(13);
+        expect(errors).toHaveLength(14);
         expect(errors).toMatchSnapshot();
     });
     it('transforms input data', async () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(35);
+        expect(Object.keys(obj)).toHaveLength(36);
         expect(obj).toMatchObject({
             falseBooleanValue: false,
             zeroBooleanValue: false,
@@ -80,6 +80,7 @@ describe('flavors.openapi', () => {
             nullableNestedValue: {
                 nullableStringValue: 'nested',
             },
+            stringValueWithDifferentWireName: 'value',
         });
 
         const errors = await validate(obj);

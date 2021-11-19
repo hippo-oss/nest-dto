@@ -11,7 +11,7 @@ describe('flavors.strict', () => {
         const obj = plainToClass(Example, {});
 
         // expect every field to exist, but be undefined
-        expect(Object.keys(obj)).toHaveLength(35);
+        expect(Object.keys(obj)).toHaveLength(36);
         for (const value of Object.values(obj)) {
             expect(value).toBeUndefined();
         }
@@ -19,14 +19,14 @@ describe('flavors.strict', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(13);
+        expect(errors).toHaveLength(14);
         expect(errors).toMatchSnapshot();
     });
     it('transforms input data', async () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(35);
+        expect(Object.keys(obj)).toHaveLength(36);
         expect(obj).toMatchObject({
             falseBooleanValue: false,
             zeroBooleanValue: false,
@@ -57,6 +57,7 @@ describe('flavors.strict', () => {
             nullableNestedValue: {
                 nullableStringValue: 'nested',
             },
+            stringValueWithDifferentWireName: 'value',
         });
 
         const errors = await validate(obj);
@@ -70,7 +71,7 @@ describe('flavors.strict', () => {
         });
 
         // expect all data to be transformed (b/c @Expose() is included)
-        expect(Object.keys(obj)).toHaveLength(35);
+        expect(Object.keys(obj)).toHaveLength(36);
 
         const errors = await validate(obj);
         // we expect no errors

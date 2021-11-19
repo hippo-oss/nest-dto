@@ -16,14 +16,14 @@ describe('flavors.basic', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(13);
+        expect(errors).toHaveLength(14);
         expect(errors).toMatchSnapshot();
     });
     it('transforms input data', async () => {
         const obj = plainToClass(Example, INPUT);
 
         // expect all data to be transformed
-        expect(Object.keys(obj)).toHaveLength(35);
+        expect(Object.keys(obj)).toHaveLength(36);
         expect(obj).toMatchObject({
             falseBooleanValue: false,
             zeroBooleanValue: false,
@@ -54,11 +54,13 @@ describe('flavors.basic', () => {
             nullableNestedValue: {
                 nullableStringValue: 'nested',
             },
+            // NB: This field is not transformed (b/c @Expose() is not included)
+            string_value_with_different_wire_name: 'value',
         });
 
         const errors = await validate(obj);
-        // we expect no errors
-        expect(errors).toHaveLength(0);
+        // we expect no errors, except for the field that was meant to be Expose'd
+        expect(errors).toHaveLength(1);
         expect(errors).toMatchSnapshot();
     });
     it('does not transform input data if extraneous values are excluded', async () => {
@@ -71,7 +73,7 @@ describe('flavors.basic', () => {
 
         const errors = await validate(obj);
         // we expect an error for every required field (but not the optional ones)
-        expect(errors).toHaveLength(13);
+        expect(errors).toHaveLength(14);
         expect(errors).toMatchSnapshot();
     });
 });
