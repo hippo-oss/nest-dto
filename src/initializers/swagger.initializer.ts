@@ -17,6 +17,7 @@ export interface SwaggerOptions {
     minLength?: number;
     minItems?: number;
     minValue?: number;
+    name?: string;
     optional?: boolean;
     type?: string | Type | Type[];
 }
@@ -45,6 +46,7 @@ export function initializeSwagger<Options extends SwaggerOptions>(
             enum: options.enum,
             enumName: options.enumName,
             example: options.example,
+            name: options.name,
             description: options.description,
             format: options.format,
             isArray: !!options.isArray,

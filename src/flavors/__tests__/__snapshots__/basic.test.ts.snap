@@ -131,10 +131,94 @@ Array [
     "target": Example {},
     "value": undefined,
   },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "stringValueWithDifferentWireName should not be null or undefined",
+      "isString": "stringValueWithDifferentWireName must be a string",
+    },
+    "property": "stringValueWithDifferentWireName",
+    "target": Example {},
+    "value": undefined,
+  },
 ]
 `;
 
-exports[`flavors.basic transforms input data 1`] = `Array []`;
+exports[`flavors.basic transforms input data 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "stringValueWithDifferentWireName should not be null or undefined",
+      "isString": "stringValueWithDifferentWireName must be a string",
+    },
+    "property": "stringValueWithDifferentWireName",
+    "target": Example {
+      "falseBooleanValue": false,
+      "nullableBooleanValue": true,
+      "nullableDateStringValue": "2021-01-12",
+      "nullableDateValue": 2021-01-12T01:12:38.956Z,
+      "nullableEnumValue": "Value",
+      "nullableIntegerValue": 42,
+      "nullableNestedValue": NestedNullableExample {
+        "nullableStringValue": "nested",
+      },
+      "nullableNumberValue": 42,
+      "nullableObjectArrayValue": Array [
+        NestedNullableExample {
+          "nullableStringValue": "nested",
+        },
+      ],
+      "nullablePrimitiveArrayValue": Array [
+        42,
+      ],
+      "nullableStringValue": "value",
+      "nullableUUIDValue": "3430cef4-6e7a-43da-a5a7-ae4c6a18be47",
+      "optionalBooleanValue": true,
+      "optionalDateStringValue": "2021-01-12",
+      "optionalDateValue": 2021-01-12T01:12:38.956Z,
+      "optionalEnumValue": "Value",
+      "optionalIntegerValue": 42,
+      "optionalNestedValue": NestedOptionalExample {
+        "optionalStringValue": "nested",
+      },
+      "optionalNumberValue": 42,
+      "optionalObjectArrayValue": Array [
+        NestedOptionalExample {
+          "optionalStringValue": "nested",
+        },
+      ],
+      "optionalPrimitiveArrayValue": Array [
+        42,
+      ],
+      "optionalStringValue": "value",
+      "optionalUUIDValue": "3430cef4-6e7a-43da-a5a7-ae4c6a18be47",
+      "requiredBooleanValue": true,
+      "requiredDateStringValue": "2021-01-12",
+      "requiredDateValue": 2021-01-12T01:12:38.956Z,
+      "requiredEnumValue": "Value",
+      "requiredIntegerValue": 42,
+      "requiredNestedValue": NestedRequiredExample {
+        "requiredStringValue": "nested",
+      },
+      "requiredNumberValue": 42,
+      "requiredObjectArrayValue": Array [
+        NestedRequiredExample {
+          "requiredStringValue": "nested",
+        },
+      ],
+      "requiredPrimitiveArrayValue": Array [
+        42,
+      ],
+      "requiredStringValue": "value",
+      "requiredUUIDValue": "3430cef4-6e7a-43da-a5a7-ae4c6a18be47",
+      "string_value_with_different_wire_name": "value",
+      "zeroBooleanValue": false,
+    },
+    "value": undefined,
+  },
+]
+`;
 
 exports[`flavors.basic validates required fields 1`] = `Example {}`;
 
@@ -266,6 +350,16 @@ Array [
       "isUuid": "requiredUUIDValue must be a UUID",
     },
     "property": "requiredUUIDValue",
+    "target": Example {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isDefined": "stringValueWithDifferentWireName should not be null or undefined",
+      "isString": "stringValueWithDifferentWireName must be a string",
+    },
+    "property": "stringValueWithDifferentWireName",
     "target": Example {},
     "value": undefined,
   },

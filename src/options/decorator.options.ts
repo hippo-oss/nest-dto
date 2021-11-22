@@ -10,6 +10,7 @@ export interface DecoratorOptions {
     description?: string,
     example?: unknown,
     isArray?: boolean | ArraySizeOptions,
+    name?: string,
     nullable?: boolean,
     optional?: boolean,
     validate?: ValidateOptions,

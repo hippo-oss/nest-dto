@@ -37,7 +37,7 @@ export class ExampleDTO {
     @IsInt()
     @ApiProperty({
         description: 'An example value',
-        type: integer',
+        type: integer,
     })
     public value!: number;
 }
@@ -90,14 +90,16 @@ The following decorators are supported:
 
 ### Decorator Options
 
-Decorators may be passed various options, dependening on their type.
+Decorators may be passed various options, depending on their type.
 
 All options are optional expect where indicated.
 
 | Option            | Decorator      | Description                                         |
 | ----------------- | -------------- | --------------------------------------------------- |
 | `description`     | *all*          | Description of the field; exposed in OpenAPI.       |
-| `isArray`         | *all*          | Designates and array of values.                     |
+| `expose`          | *all*          | Enables alternate name to be set for the field.     |
+| `isArray`         | *all*          | Designates an array of values.                      |
+| `name`            | *all*          | Alternate name of the field; exposed in OpenAPI.    |
 | `nullable`        | *all*          | Whether the field can be set to `null`.             |
 | `optional`        | *all*          | Whether the field be set to `undefined` or omitted. |
 | ----------------- | -------------- | --------------------------------------------------- |
