@@ -18,13 +18,15 @@ export function setPropertiesArray<T, F extends keyof T>(cls: Type<T>, fields: F
         (name: F): string => `:${String(name)}`,
     );
 
-    Reflect.defineMetadata(OPENAPI_PROPERTIES_ARRAY, propertiesArray, cls.prototype);
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    Reflect.defineMetadata(OPENAPI_PROPERTIES_ARRAY, propertiesArray, cls.prototype as {});
 }
 
 /* Get the the OpenAPI properties array as fields.
  */
 export function getPropertiesArray<T, F extends keyof T>(cls: Type<T>): F[] {
-    const propertiesArray = Reflect.getMetadata(OPENAPI_PROPERTIES_ARRAY, cls.prototype) as unknown as string[];
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    const propertiesArray = Reflect.getMetadata(OPENAPI_PROPERTIES_ARRAY, cls.prototype as {}) as unknown as string[];
 
     return (propertiesArray || []).map(
         (name: string) => trimStart(name, ':') as F,

@@ -9,6 +9,7 @@ module.exports = {
     plugins: ['@typescript-eslint', 'prefer-arrow'],
     extends: [
         'eslint:recommended',
+        'airbnb-base',
         'airbnb-typescript/base',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
@@ -35,7 +36,18 @@ module.exports = {
         },
     },
     rules: {
-        '@typescript-eslint/indent': ['error', 4],
+        '@typescript-eslint/indent': [
+            'error',
+            4,
+            {
+                // The indent rules are currently broken for class properties and decorators
+                'ignoredNodes': [
+                    'Decorator',
+                    'PropertyDefinition',
+                ],
+                'SwitchCase': 1,
+            },
+        ],
         'class-methods-use-this': 'off',
         'comma-dangle': [
             2,
@@ -51,8 +63,10 @@ module.exports = {
         'import/extensions': 'off',
         'import/prefer-default-export': 'off',
         '@typescript-eslint/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        '@typescript-eslint/no-shadow': ['error'],
         'max-classes-per-file': 'off',
         'max-len': ['error', { code: 120 }],
+        'no-shadow': 'off',
         'object-curly-newline': ['error', { consistent: true }],
         'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
         'padded-blocks': 0,
