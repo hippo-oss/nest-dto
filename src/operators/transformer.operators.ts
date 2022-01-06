@@ -31,7 +31,8 @@ export function omitTransformerProperties<T, F extends keyof T>(
     // decorate each omitted field as `@Exclude()`
     for (const field of fields) {
         if (typeof field === 'string') {
-            decorator(cls.prototype, field);
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            decorator(cls.prototype as {}, field);
         }
     }
 
@@ -50,7 +51,8 @@ export function pickTransformerProperties<T extends Obj, F extends keyof T>(
     // decorate each non-picked field as `@Exclude()`
     for (const field of keysForClass(cls)) {
         if (!fields.includes(field as F)) {
-            decorator(cls.prototype, field);
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            decorator(cls.prototype as {}, field);
         }
     }
 
