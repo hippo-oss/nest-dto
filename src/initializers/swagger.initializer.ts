@@ -19,6 +19,7 @@ export interface SwaggerOptions {
     minValue?: number;
     name?: string;
     optional?: boolean;
+    deprecated?: boolean;
     type?: string | Type | Type[];
 }
 
@@ -58,6 +59,7 @@ export function initializeSwagger<Options extends SwaggerOptions>(
             minItems: options.minItems !== undefined ? options.minItems : isArray?.minItems,
             nullable: options.nullable,
             required: !options.optional,
+            deprecated: options.deprecated,
             type: options.type,
         }),
     ];
