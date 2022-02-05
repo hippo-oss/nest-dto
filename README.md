@@ -102,6 +102,7 @@ All options are optional expect where indicated.
 | `name`            | *all*          | Alternate name of the field; exposed in OpenAPI.    |
 | `nullable`        | *all*          | Whether the field can be set to `null`.             |
 | `optional`        | *all*          | Whether the field be set to `undefined` or omitted. |
+| `deprecated`      | *all*          | Whether the field appears as deprecated             |
 | ----------------- | -------------- | --------------------------------------------------- |
 | `type` (required) | `IsArray`      | The type of the array's items.                      |
 | `maxItems`        | `IsArray`      | The maximum number of array items.                  |
