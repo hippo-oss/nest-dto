@@ -66,7 +66,6 @@ specific combination of these libraries.
 
 | Flavor    | Description                                                                      |
 | --------- | -------------------------------------------------------------------------------- |
-| `basic`   | Integrates `class-transformer` and `class-validator`                             |
 | `strict`  | Integrates `class-transformer` and `class-validator` and always uses `@Expose()` |
 | `openapi` | Integrates `class-transformer`, `class-validator`, and `@nestjs/swagger`         |
 
