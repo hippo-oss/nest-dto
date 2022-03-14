@@ -1,11 +1,11 @@
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import * as strict from '../strict';
+import { DECORATORS } from '../strict';
 import { INPUT, createFixtures } from './fixtures';
 
 describe('flavors.strict', () => {
-    const Example = createFixtures(strict);
+    const Example = createFixtures(DECORATORS);
 
     it('validates required fields', async () => {
         const obj = plainToClass(Example, {});

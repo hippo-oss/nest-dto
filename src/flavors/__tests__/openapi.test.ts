@@ -4,11 +4,11 @@ import { Test } from '@nestjs/testing';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import * as openapi from '../openapi';
+import { DECORATORS } from '../openapi';
 import { INPUT, createFixtures } from './fixtures';
 
 describe('flavors.openapi', () => {
-    const Example = createFixtures(openapi);
+    const Example = createFixtures(DECORATORS);
 
     /* NB: it's tricky to correctly define the return type of `createFixtures` and
      * we get a "refers to a value, but is being used as a type here" compiler error
@@ -17,7 +17,7 @@ describe('flavors.openapi', () => {
      * Fortunately, we can define the return type as a `Type` and use a subclass,
      * which satisfies the compiler.
      */
-    class ExampleDTO extends Example {}
+    class ExampleDTO extends Example { }
 
     @Controller('example')
     class ExampleController {
