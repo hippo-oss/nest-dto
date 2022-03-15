@@ -1,41 +1,20 @@
-/* Defines a flavor of decorators appropriate for `@nestjs/swagger` declarations.
- */
-import {
-    initializeSwagger,
-    initializeStrictTransformer,
-    initializeValidator,
-    SwaggerOptions,
-    TransformerOptions,
-    ValidatorOptions,
-} from '../initializers';
-import {
-    IsArrayRecipe,
-    IsBooleanRecipe,
-    IsDateRecipe,
-    IsDateStringRecipe,
-    IsEnumRecipe,
-    IsIntegerRecipe,
-    IsNestedRecipe,
-    IsNumberRecipe,
-    IsStringRecipe,
-    IsUUIDRecipe,
-} from '../recipes';
+import { composeDecoratorFactories } from '@hippo-oss/dto-decorators';
+import { CLASS_DECORATORS } from '@hippo-oss/class-decorators';
+import { OPENAPI_DECORATORS } from '@hippo-oss/openapi-decorators';
 
-const initializers = [
-    initializeSwagger,
-    initializeStrictTransformer,
-    initializeValidator,
-];
+export const DECORATORS = composeDecoratorFactories([
+    CLASS_DECORATORS,
+    OPENAPI_DECORATORS,
+]);
 
-type FlavorOptions = SwaggerOptions & TransformerOptions & ValidatorOptions;
-
-export const IsArray = IsArrayRecipe<FlavorOptions>(initializers);
-export const IsBoolean = IsBooleanRecipe<FlavorOptions>(initializers);
-export const IsDate = IsDateRecipe<FlavorOptions>(initializers);
-export const IsDateString = IsDateStringRecipe<FlavorOptions>(initializers);
-export const IsEnum = IsEnumRecipe<FlavorOptions>(initializers);
-export const IsInteger = IsIntegerRecipe<FlavorOptions>(initializers);
-export const IsNested = IsNestedRecipe<FlavorOptions>(initializers);
-export const IsNumber = IsNumberRecipe<FlavorOptions>(initializers);
-export const IsString = IsStringRecipe<FlavorOptions>(initializers);
-export const IsUUID = IsUUIDRecipe<FlavorOptions>(initializers);
+export const {
+    IsBoolean,
+    IsDate,
+    IsDateString,
+    IsEnum,
+    IsInteger,
+    IsNested,
+    IsNumber,
+    IsString,
+    IsUUID,
+} = DECORATORS;

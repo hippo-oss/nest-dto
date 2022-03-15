@@ -99,6 +99,7 @@ Array [
     "constraints": Object {
       "isArray": "requiredPrimitiveArrayValue must be an array",
       "isDefined": "requiredPrimitiveArrayValue should not be null or undefined",
+      "isNumber": "each value in requiredPrimitiveArrayValue must be a number conforming to the specified constraints",
     },
     "property": "requiredPrimitiveArrayValue",
     "target": Example {

@@ -37,6 +37,9 @@
         "ci:test:coverage": "NODE_ENV=test CI=1 jest --config=jest.coverage.config.js"
     },
     "dependencies": {
+        "@hippo-oss/dto-decorators": ">=0.3.1",
+        "@hippo-oss/class-decorators": ">=0.3.0",
+        "@hippo-oss/openapi-decorators": ">=0.1.0",
         "lodash": ">=4.17.21"
     },
     "peerDependencies": {

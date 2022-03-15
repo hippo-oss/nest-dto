@@ -10,10 +10,12 @@ import {
 import { derive, omit, pick } from '..';
 
 class Foo {
-    @IsString()
+    @IsString({
+    })
     bar!: string;
 
-    @IsString()
+    @IsString({
+    })
     baz!: string;
 }
 

@@ -1,12 +1,11 @@
+import { DTODecoratorFactories } from '@hippo-oss/dto-decorators';
 import { Type } from '@nestjs/common';
-import { Flavor } from '../../interfaces';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type Fixture = Type<{}>;
 
-export function createFixtures(flavor: Flavor): Fixture {
+export function createFixtures(flavor: DTODecoratorFactories): Fixture {
     const {
-        IsArray,
         IsBoolean,
         IsDate,
         IsDateString,
@@ -23,46 +22,57 @@ export function createFixtures(flavor: Flavor): Fixture {
     }
 
     class NestedRequiredExample {
-        @IsString()
+        @IsString({
+        })
         requiredStringValue!: string;
     }
 
     class NestedOptionalExample {
-        @IsString()
+        @IsString({
+            optional: true,
+        })
         optionalStringValue?: string;
     }
 
     class NestedNullableExample {
-        @IsString()
+        @IsString({
+            nullable: true,
+        })
         nullableStringValue!: string | null;
     }
 
     class Example {
         /* Create one property of each type that is required. */
 
-        @IsArray({
+        @IsNested({
+            isArray: true,
             type: NestedRequiredExample,
         })
         requiredObjectArrayValue!: NestedRequiredExample[];
 
-        @IsArray({
-            type: Number,
+        @IsNumber({
+            isArray: true,
         })
         requiredPrimitiveArrayValue!: number[];
 
-        @IsBoolean()
+        @IsBoolean({
+        })
         falseBooleanValue!: boolean;
 
-        @IsBoolean()
+        @IsBoolean({
+        })
         zeroBooleanValue!: boolean;
 
-        @IsBoolean()
+        @IsBoolean({
+        })
         requiredBooleanValue!: boolean;
 
-        @IsDateString()
+        @IsDateString({
+        })
         requiredDateStringValue!: string;
 
-        @IsDate()
+        @IsDate({
+        })
         requiredDateValue!: Date;
 
         @IsEnum({
@@ -71,7 +81,8 @@ export function createFixtures(flavor: Flavor): Fixture {
         })
         requiredEnumValue!: ExampleEnum;
 
-        @IsInteger()
+        @IsInteger({
+        })
         requiredIntegerValue!: number;
 
         @IsNested({
@@ -79,25 +90,29 @@ export function createFixtures(flavor: Flavor): Fixture {
         })
         requiredNestedValue!: NestedRequiredExample;
 
-        @IsNumber()
+        @IsNumber({
+        })
         requiredNumberValue!: number;
 
-        @IsString()
+        @IsString({
+        })
         requiredStringValue!: string;
 
-        @IsUUID()
+        @IsUUID({
+        })
         requiredUUIDValue!: string;
 
         /* Create one property of each type that is optional. */
 
-        @IsArray({
+        @IsNested({
+            isArray: true,
             type: NestedOptionalExample,
             optional: true,
         })
         optionalObjectArrayValue?: NestedOptionalExample[];
 
-        @IsArray({
-            type: Number,
+        @IsNumber({
+            isArray: true,
             optional: true,
         })
         optionalPrimitiveArrayValue?: number[];
@@ -152,14 +167,15 @@ export function createFixtures(flavor: Flavor): Fixture {
 
         /* Create one property of each type that is nullable. */
 
-        @IsArray({
+        @IsNested({
+            isArray: true,
             type: NestedNullableExample,
             nullable: true,
         })
         nullableObjectArrayValue!: NestedNullableExample[] | null;
 
-        @IsArray({
-            type: Number,
+        @IsNumber({
+            isArray: true,
             nullable: true,
         })
         nullablePrimitiveArrayValue!: number[] | null;
