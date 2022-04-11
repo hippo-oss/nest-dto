@@ -313,24 +313,24 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@hippo-oss/class-decorators@>=0.3.0":
+"@hippo-oss/class-decorators@>=0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@hippo-oss/class-decorators/-/class-decorators-0.4.0.tgz#0f4416999a5f2500550de7e448f45af4c80b68ff"
+  integrity sha512-NOgjoz4QPMeCHap4QbflKwC0dvjXFXXmJwi2Q+/oDEi+Fgy7yq9oECLi5YAQWinWItIZMlzsgnYRNYM+3Qm4HQ==
+  dependencies:
+    "@hippo-oss/dto-decorators" ">=0.4.0"
+
+"@hippo-oss/dto-decorators@>=0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@hippo-oss/dto-decorators/-/dto-decorators-0.4.0.tgz#705d22be552f27e8d3672b4e34e8c92898e2466f"
+  integrity sha512-Uctwi9b2c3SrzhwlaDCOFZHah5wqO6svlIwldWVQ7nSRR4IbJnd2Hgq/nYpvcNV9sfNp27q1cTuqloz+zG6Fzw==
+
+"@hippo-oss/openapi-decorators@>=0.3.0":
   version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@hippo-oss/class-decorators/-/class-decorators-0.3.0.tgz#4eb28b5ff25bbc217e5b94e1781b9e800f4baf71"
-  integrity sha512-qsPdY1JrD+FqC98Hnm7OuHODYLtHEPYt054h8vGTkBmuPo7qj3f+yBcQ4JlHqOrQlz2aCeqqlwUv7tPZ1EJIgg==
+  resolved "https://registry.yarnpkg.com/@hippo-oss/openapi-decorators/-/openapi-decorators-0.3.0.tgz#c95339478d2762f47d7846d900f47f19d90cea50"
+  integrity sha512-z71NB2naHZosdli5Eos4ZZMNEJwBFDDADt/vFDzyRli4RLzBM95gH2EYf5ltip3pmoSsp83WyOwxEeWTxI12aw==
   dependencies:
-    "@hippo-oss/dto-decorators" ">=0.3.1"
-
-"@hippo-oss/dto-decorators@>=0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@hippo-oss/dto-decorators/-/dto-decorators-0.3.1.tgz#6080763446c9415e0cabe0e8b4be2c1091476c8b"
-  integrity sha512-n/0dvK+RBoXWix9YM1Qgv22oSMR/0dNTWCkXeDu4kZ0XxsJ+DN2MGqPwkJykBWlwDzf/4daEX6RTBP/LFXAMTA==
-
-"@hippo-oss/openapi-decorators@>=0.1.0":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@hippo-oss/openapi-decorators/-/openapi-decorators-0.2.2.tgz#04f3d406aec1395555f8f5b7bb57e392725555ba"
-  integrity sha512-23aX7Ceiun+o63i+DE4eiPMweSsfY2zQnO78t8St+Fskp+9NKRq8aS7dQqniMesFic98oP0E+FSP8Md50Famqg==
-  dependencies:
-    "@hippo-oss/dto-decorators" ">=0.3.1"
+    "@hippo-oss/dto-decorators" ">=0.4.0"
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.2"
