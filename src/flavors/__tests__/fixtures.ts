@@ -22,8 +22,7 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
     }
 
     class NestedRequiredExample {
-        @IsString({
-        })
+        @IsString()
         requiredStringValue!: string;
     }
 
@@ -55,24 +54,19 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
         })
         requiredPrimitiveArrayValue!: number[];
 
-        @IsBoolean({
-        })
+        @IsBoolean()
         falseBooleanValue!: boolean;
 
-        @IsBoolean({
-        })
+        @IsBoolean()
         zeroBooleanValue!: boolean;
 
-        @IsBoolean({
-        })
+        @IsBoolean()
         requiredBooleanValue!: boolean;
 
-        @IsDateString({
-        })
+        @IsDateString()
         requiredDateStringValue!: string;
 
-        @IsDate({
-        })
+        @IsDate()
         requiredDateValue!: Date;
 
         @IsEnum({
@@ -81,8 +75,7 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
         })
         requiredEnumValue!: ExampleEnum;
 
-        @IsInteger({
-        })
+        @IsInteger()
         requiredIntegerValue!: number;
 
         @IsNested({
@@ -90,16 +83,13 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
         })
         requiredNestedValue!: NestedRequiredExample;
 
-        @IsNumber({
-        })
+        @IsNumber()
         requiredNumberValue!: number;
 
-        @IsString({
-        })
+        @IsString()
         requiredStringValue!: string;
 
-        @IsUUID({
-        })
+        @IsUUID()
         requiredUUIDValue!: string;
 
         /* Create one property of each type that is optional. */
