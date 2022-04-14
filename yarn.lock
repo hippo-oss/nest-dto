@@ -313,10 +313,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@hippo-oss/class-decorators@>=0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@hippo-oss/class-decorators/-/class-decorators-0.4.0.tgz#0f4416999a5f2500550de7e448f45af4c80b68ff"
-  integrity sha512-NOgjoz4QPMeCHap4QbflKwC0dvjXFXXmJwi2Q+/oDEi+Fgy7yq9oECLi5YAQWinWItIZMlzsgnYRNYM+3Qm4HQ==
+"@hippo-oss/class-decorators@>=0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@hippo-oss/class-decorators/-/class-decorators-0.4.1.tgz#72bfd183b01236e2098a26ec6a70ba78751d72b5"
+  integrity sha512-MxT0hXxLrN0d8ygZDHdzWOpMAoeyhRlAygL0ITJtL7F4Wc9egV0Pl9w3wURldx8VT86VNiLdntv0avlKZV+PLw==
   dependencies:
     "@hippo-oss/dto-decorators" ">=0.4.0"
 
@@ -324,6 +324,11 @@
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@hippo-oss/dto-decorators/-/dto-decorators-0.4.0.tgz#705d22be552f27e8d3672b4e34e8c92898e2466f"
   integrity sha512-Uctwi9b2c3SrzhwlaDCOFZHah5wqO6svlIwldWVQ7nSRR4IbJnd2Hgq/nYpvcNV9sfNp27q1cTuqloz+zG6Fzw==
+
+"@hippo-oss/dto-decorators@>=0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@hippo-oss/dto-decorators/-/dto-decorators-0.4.1.tgz#0f44ecfc87bf33dad431da483f5724d2243aa0fd"
+  integrity sha512-As552HXjj8134muj9bsGiEwdZjfaZipbeULrIq1Ay4xDgN8qtcfkucBrBCObToy1nTuY29saDH2L2M3XBpKGWg==
 
 "@hippo-oss/openapi-decorators@>=0.3.0":
   version "0.3.0"

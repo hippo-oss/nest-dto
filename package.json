@@ -1,6 +1,6 @@
 {
     "name": "@hippo-oss/nest-dto",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "NestJS DTO decorators.",
     "main": "./dist/index.js",
     "repository": "https://github.com/hippo-oss/nest-dto",
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@hippo-oss/dto-decorators": ">=0.4.1",
-        "@hippo-oss/class-decorators": ">=0.4.0",
+        "@hippo-oss/class-decorators": ">=0.4.1",
         "@hippo-oss/openapi-decorators": ">=0.3.0",
         "lodash": ">=4.17.21"
     },
