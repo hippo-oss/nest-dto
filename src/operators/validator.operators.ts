@@ -27,26 +27,6 @@ function propertiesForClass<T>(cls: Type<T>): string[] {
     );
 }
 
-/* Narrow class-validator properties by picking the provided fields.
- */
-export function omitValidatorProperties<T, F extends keyof T>(
-    cls: Type<T>,
-    fields: F[],
-): Type<T> {
-
-    const decorator = IsOptional();
-
-    /// decorate each omitted field as `@IsOptional()`
-    for (const field of fields) {
-        if (typeof field === 'string') {
-            // eslint-disable-next-line @typescript-eslint/ban-types
-            decorator(cls.prototype as {}, field);
-        }
-    }
-
-    return cls;
-}
-
 /* Narrow class-validator properties by omitting the provided fields.
  */
 export function pickValidatorProperties<T, F extends keyof T>(

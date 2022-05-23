@@ -19,26 +19,6 @@ function keysForClass<T extends Obj>(cls: Type<T>): string[] {
     );
 }
 
-/* Narrow class-transformer properties by picking the provided fields.
- */
-export function omitTransformerProperties<T, F extends keyof T>(
-    cls: Type<T>,
-    fields: F[],
-): Type<T> {
-
-    const decorator = Exclude();
-
-    // decorate each omitted field as `@Exclude()`
-    for (const field of fields) {
-        if (typeof field === 'string') {
-            // eslint-disable-next-line @typescript-eslint/ban-types
-            decorator(cls.prototype as {}, field);
-        }
-    }
-
-    return cls;
-}
-
 /* Narrow class-transformer properties by omitting the provided fields.
  */
 export function pickTransformerProperties<T extends Obj, F extends keyof T>(
