@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+ - Delegates `pick` implementation to `class-decorators` and `openapi-decorators`.
  - Breaking change: removes `omit` operator; we expect all usages to use `pick` exclusively.
 
 ## [1.0.0]
