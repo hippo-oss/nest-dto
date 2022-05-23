@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+
+ - Breaking change: removes `omit` operator; we expect all usages to use `pick` exclusively.
+
 ## [1.0.0]
 
  - Breaking change: removes `basic` flavor; we expect all usages to have switched to the `strict` flavor.
