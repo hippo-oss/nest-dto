@@ -38,8 +38,8 @@
     },
     "dependencies": {
         "@hippo-oss/dto-decorators": ">=0.4.1",
-        "@hippo-oss/class-decorators": ">=0.4.1",
-        "@hippo-oss/openapi-decorators": ">=0.3.0",
+        "@hippo-oss/class-decorators": ">=0.5.0",
+        "@hippo-oss/openapi-decorators": ">=0.4.0",
         "lodash": ">=4.17.21"
     },
     "peerDependencies": {
