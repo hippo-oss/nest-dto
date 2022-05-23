@@ -1,9 +1,8 @@
 import { Type } from '@nestjs/common';
+import { pickTransformerProperties, pickValidatorProperties } from '@hippo-oss/class-decorators';
+import { pickOpenAPIProperties } from '@hippo-oss/openapi-decorators';
 
 import { Obj, derive } from './derive.operator';
-import { pickOpenAPIProperties } from './openapi.operators';
-import { pickTransformerProperties } from './transformer.operators';
-import { pickValidatorProperties } from './validator.operators';
 
 /* Create a derived class that narrows the `Base` class by picking fields.
  */
