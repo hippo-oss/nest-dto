@@ -74,18 +74,19 @@ specific combination of these libraries.
 
 The following decorators are supported:
 
-| Decorator      | Description                         |
-| -------------- | ----------------------------------- |
-| `IsArray`      | Declares an array of a nested type. |
-| `IsBoolean`    | Declares a boolean value.           |
-| `IsDate`       | Declares a `Date` value.            |
-| `IsDateString` | Declares an ISO 8601 date string.   |
-| `IsEnum`       | Declares an enumerated value.       |
-| `IsInteger`    | Declares an integer number.         |
-| `IsNested`     | Declares a nested object type.      |
-| `IsNumber`     | Declares a floating point number.   |
-| `IsString`     | Declares a string.                  |
-| `IsUUID`       | Declares a UUID string.             |
+| Decorator         | Description                                                         |
+| ----------------- | ------------------------------------------------------------------- |
+| `IsArray`         | Declares an array of a nested type.                                 |
+| `IsBoolean`       | Declares a boolean value.                                           |
+| `IsDate`          | Declares a `Date` value.                                            |
+| `IsDateString`    | Declares an ISO 8601 date string.                                   |
+| `IsEnum`          | Declares an enumerated value.                                       |
+| `IsInteger`       | Declares an integer number (can be also numeric string or boolean). |
+| `IsStrictInteger` | Declares an integer number (cannot be numeric string or boolean).   |
+| `IsNested`        | Declares a nested object type.                                      |
+| `IsNumber`        | Declares a floating point number.                                   |
+| `IsString`        | Declares a string.                                                  |
+| `IsUUID`          | Declares a UUID string.                                             |
 
 ### Decorator Options
 
@@ -93,40 +94,43 @@ Decorators may be passed various options, depending on their type.
 
 All options are optional expect where indicated.
 
-| Option            | Decorator      | Description                                         |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `description`     | *all*          | Description of the field; exposed in OpenAPI.       |
-| `expose`          | *all*          | Enables alternate name to be set for the field.     |
-| `isArray`         | *all*          | Designates an array of values.                      |
-| `name`            | *all*          | Alternate name of the field; exposed in OpenAPI.    |
-| `nullable`        | *all*          | Whether the field can be set to `null`.             |
-| `optional`        | *all*          | Whether the field be set to `undefined` or omitted. |
-| `deprecated`      | *all*          | Whether the field appears as deprecated             |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `type` (required) | `IsArray`      | The type of the array's items.                      |
-| `maxItems`        | `IsArray`      | The maximum number of array items.                  |
-| `minItems`        | `IsArray`      | The minimum number of array items.                  |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `format`          | `IsDate`       | The OpenaPI date format; defaults to `date-time`.   |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `format`          | `IsDateString` | The OpenAPI date format; defaults to `date`.        |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `enum` (required) | `IsEnum`       | The enum type.                                      |
-| `enumName`        | `IsEnum`       | The enum name; required to correctly export OpenAPI |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `maxValue`        | `IsInteger`    | The maximum value of the field.                     |
-| `minValue`        | `IsInteger`    | The minimum value of the field.                     |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `type` (required) | `IsNested`     | The nested type.                                    |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `maxValue`        | `IsNumber`     | The maximum value of the field.                     |
-| `minValue`        | `IsNumber`     | The minimum value of the field.                     |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `maxLength`       | `IsString`     | The maximum length of the string.                   |
-| `minLength`       | `IsString`     | The minimum length of the string.                   |
-| `pattern`         | `IsString`     | A regex pattern for validating the string.          |
-| ----------------- | -------------- | --------------------------------------------------- |
-| `version`         | `IsUUID`       | The type of UUID.                                   |
+| Option            | Decorator         | Description                                         |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `description`     | *all*             | Description of the field; exposed in OpenAPI.       |
+| `expose`          | *all*             | Enables alternate name to be set for the field.     |
+| `isArray`         | *all*             | Designates an array of values.                      |
+| `name`            | *all*             | Alternate name of the field; exposed in OpenAPI.    |
+| `nullable`        | *all*             | Whether the field can be set to `null`.             |
+| `optional`        | *all*             | Whether the field be set to `undefined` or omitted. |
+| `deprecated`      | *all*             | Whether the field appears as deprecated             |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `type` (required) | `IsArray`         | The type of the array's items.                      |
+| `maxItems`        | `IsArray`         | The maximum number of array items.                  |
+| `minItems`        | `IsArray`         | The minimum number of array items.                  |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `format`          | `IsDate`          | The OpenaPI date format; defaults to `date-time`.   |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `format`          | `IsDateString`    | The OpenAPI date format; defaults to `date`.        |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `enum` (required) | `IsEnum`          | The enum type.                                      |
+| `enumName`        | `IsEnum`          | The enum name; required to correctly export OpenAPI |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `maxValue`        | `IsInteger`       | The maximum value of the field.                     |
+| `minValue`        | `IsInteger`       | The minimum value of the field.                     |
+| ----------------- | ------------------| --------------------------------------------------- |
+| `maxValue`        | `IsStrictInteger` | The maximum value of the field.                     |
+| `minValue`        | `IsStrictInteger` | The minimum value of the field.                     |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `type` (required) | `IsNested`        | The nested type.                                    |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `maxValue`        | `IsNumber`        | The maximum value of the field.                     |
+| `minValue`        | `IsNumber`        | The minimum value of the field.                     |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `maxLength`       | `IsString`        | The maximum length of the string.                   |
+| `minLength`       | `IsString`        | The minimum length of the string.                   |
+| `pattern`         | `IsString`        | A regex pattern for validating the string.          |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `version`         | `IsUUID`          | The type of UUID.                                   |
 
 
 ### Arrays

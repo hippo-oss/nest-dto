@@ -13,6 +13,7 @@ export const {
     IsDateString,
     IsEnum,
     IsInteger,
+    // TODO: Add IsStrictInteger when available in dto-decorators
     IsNested,
     IsNumber,
     IsString,

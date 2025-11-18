@@ -78,6 +78,8 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
         @IsInteger()
         requiredIntegerValue!: number;
 
+        // TODO: Add IsStrictInteger when available in dto-decorators
+
         @IsNested({
             type: NestedRequiredExample,
         })
@@ -133,6 +135,8 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
             optional: true,
         })
         optionalIntegerValue?: number;
+
+        // TODO: Add IsStrictInteger when available in dto-decorators
 
         @IsNested({
             type: NestedOptionalExample,
@@ -196,6 +200,8 @@ export function createFixtures(flavor: DTODecoratorFactories): Fixture {
             nullable: true,
         })
         nullableIntegerValue!: number | null;
+
+        // TODO: Add IsStrictInteger when available in dto-decorators
 
         @IsNested({
             type: NestedNullableExample,
